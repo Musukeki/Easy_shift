@@ -14,7 +14,7 @@
 - SpringBoot: 3.5.4
 - Gradle
 
-**AI**
+**AI 模型**
 
 - GPT 4o-mini
 
@@ -24,5 +24,5 @@
 
 **相關檔案下載**
 
-[後端檔案](https://github.com/Musukeki/shift)
+[後端檔案](https://github.com/Musukeki/shift)|
 [資料庫檔案](https://github.com/Musukeki/shift/blob/main/datafile/DEMO.sql)
