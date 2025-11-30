@@ -24,5 +24,4 @@
 
 **相關檔案下載**
 
-[後端檔案](https://github.com/Musukeki/shift)|
-[資料庫檔案](https://github.com/Musukeki/shift/blob/main/datafile/DEMO.sql)
+[後端檔案](https://github.com/Musukeki/shift)｜[資料庫檔案](https://github.com/Musukeki/shift/blob/main/datafile/DEMO.sql)
