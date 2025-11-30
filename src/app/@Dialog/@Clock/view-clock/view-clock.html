@@ -1,0 +1,61 @@
+<div class="dialog-container">
+  <div class="header">
+    <mat-icon (click)="preMonth()">chevron_left</mat-icon>
+    <span>{{ currentMonthLabel }}</span>
+    <mat-icon (click)="nextMonth()">chevron_right</mat-icon>
+  </div>
+  <div class="container-wrapper">
+
+
+    @for(item of clockList; track $index) {
+    <div class="clock-card">
+      <div class="date-wrap">
+        <h2 class="date">{{ item.workDate }}</h2>
+        @if (item.shiftWorkId == 1) {
+        <span>當日班別：早</span>
+        } @else if (item.shiftWorkId == 2) {
+        <span>當日班別：中</span>
+        } @else if (item.shiftWorkId == 3) {
+        <span>當日班別：晚</span>
+        } @else if (item.shiftWorkId == 4) {
+        <span>當日班別：夜</span>
+        }
+      </div>
+
+      @if (item.clockOff != null) {
+
+      <div class="clock-time">
+        <span class="clock-on">上班打卡時間：{{ item.clockOn }}</span>
+        <span class="clock-off">下班打卡時間：{{ item.clockOff }}</span>
+      </div>
+      } @else {
+      <div class="clock-time">
+        <span class="clock-on">上班打卡時間：{{ item.clockOn }}</span>
+        <span class="clock-off">下班打卡時間：<span class="incomplete">尚未打卡</span></span>
+      </div>
+      }
+      <!-- ? -->
+      @if(item.restStart && item.restEnd){
+      <div class="clock-time">
+        <span class="rest-start">休息開始時間：{{ item.restStart }}</span>
+        <span class="rest-end">休息結束時間：{{ item.restEnd }}</span>
+      </div>
+      } @else if (item.restStart && item.restEnd == null) {
+      <div class="clock-time">
+        <span class="rest-start">休息開始時間：{{ item.restStart }}</span>
+        <span class="rest-end">休息結束時間：<span class="incomplete">尚未打卡</span></span>
+      </div>
+      }
+      <!-- ? -->
+      @if(item.hasDouble) {
+      <p class="double">薪資雙倍：<span class="yes">是</span></p>
+      } @else {
+      <p class="double">薪資雙倍：<span class="no">無</span></p>
+      }
+
+      <p class="score">心情分數：<strong>{{ item.score }}</strong> 點</p>
+      <p class="hours">工作時數：<strong>{{ item.totalHour }}</strong> 小時</p>
+    </div>
+    }
+  </div>
+</div>

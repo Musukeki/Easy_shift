@@ -1,0 +1,49 @@
+<div class="card">
+  <!-- 標題欄 -->
+  <div class="card__header">
+    <div class="card__header-left">
+      <div class="card__header-icon">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/info.png" alt="info" />
+      </div>
+      <h2 class="card__title">問題與意見回饋</h2>
+    </div>
+
+    <button type="button" class="card__close" (click)="onClose()" aria-label="關閉">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- 內容 -->
+  <div class="card__body">
+    <div class="form-row">
+      <label class="label">員工編號</label>
+      <input class="input display" [(ngModel)]="form.employeeId" placeholder="例如 E0001" readonly />
+    </div>
+
+    <div class="form-row">
+      <label class="label">標題 <span class="req">*</span></label>
+      <input class="input" [(ngModel)]="form.title" placeholder="請簡述您的問題或建議" maxlength="100" />
+    </div>
+
+    <div class="form-row">
+      <label class="label">訊息內容 <span class="req">*</span></label>
+      <textarea class="textarea" [(ngModel)]="form.message"
+                placeholder="請詳細描述您遇到的問題或想提供的意見..." rows="6" maxlength="1000"></textarea>
+      <div class="counter">{{ (form.message || '').length }} / 1000 字</div>
+    </div>
+
+    <!-- 按鈕（保留你的兩顆） -->
+    <div class="btnRow card__btns">
+      <button id="button-1" class="button" (click)="onClose()">
+        取消
+        <img id="arrow-hover" src="https://img.icons8.com/ios-filled/50/ff0000/paper-plane.png" />
+      </button>
+
+      <button id="button-1" class="button" (click)="sendComment()" [disabled]="loading">
+        送出
+        <img id="arrow-hover" src="https://img.icons8.com/ios-filled/50/000000/paper-plane.png" />
+      </button>
+    </div>
+  </div>
+</div>
+  

@@ -1,0 +1,36 @@
+<div class="clock-scale">
+    <div class="clock-dial">
+      <div class="point"></div>
+      <!-- <div class="brand">SmartSHIFT</div> -->
+    
+     <!-- 自動產生 1~12 -->
+<div class="numbers">
+    <span *ngFor="let n of [1,2,3,4,5,6,7,8,9,10,11,12]" [ngStyle]="{'--i': n}">
+      {{ n }}
+    </span>
+  </div>
+  
+  <!-- 分針 -->
+  <div class="minute-hand-wrapper" [ngStyle]="{ transform: 'rotate(' + minute + 'deg)' }">
+    <div class="minute-hand">
+      <div class="hand"></div>
+      <div class="arrow">V</div>
+    </div>
+  </div>
+  
+  <!-- 時針 -->
+  <div class="hour-hand-wrapper" [ngStyle]="{ transform: 'rotate(' + hour + 'deg)' }">
+    <div class="hour-hand">
+      <div class="hand"></div>
+      <div class="arrow">V</div>
+    </div>
+  </div>
+  
+  <!-- 秒針 -->
+  <div class="second-hand-wrapper" [ngStyle]="{ transform: 'rotate(' + second + 'deg)' }">
+    <div class="second-hand">
+      <div class="hand"></div>
+    </div>
+  </div>
+    </div>
+    </div>

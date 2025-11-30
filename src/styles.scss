@@ -1,0 +1,141 @@
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f9f1f0;
+}
+
+.mat-mdc-tab-body-wrapper {
+  min-height: 420px;
+  /* 依你的內容調整，例如 600~800px */
+}
+
+
+//這段讓 Dialog 本體不要出現滾動條，而且高度可以超過原本的限制。!important強制覆蓋只能用我的這個樣式
+.cdk-overlay-pane.no-scroll .mat-mdc-dialog-surface {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  max-height: none !important;
+}
+
+//這段的作用是 讓內文可以完整顯示，不被限制在一個固定高度的小框框裡，並且拿掉預設的 padding。
+//visible不論內容有多大，都讓它顯示出來，不要裁切，也不要滾動條。
+.cdk-overlay-pane.no-scroll .mat-mdc-dialog-content {
+  overflow: visible !important;
+  max-height: none !important;
+  padding: 0 !important;
+}
+
+//讓dailog可以自動縮放
+.cdk-overlay-pane.no-scroll .all-flex {
+  min-height: auto !important;
+}
+
+/* 只在 Dialog 開啟時，保險地關掉整頁水平捲軸 */
+body.cdk-global-scrollblock {
+  overflow-x: hidden !important;
+}
+
+//這段的作用是 讓內文可以完整顯示，不被限制在一個固定高度的小框框裡，並且拿掉預設的 padding。
+//visible不論內容有多大，都讓它顯示出來，不要裁切，也不要滾動條。
+.cdk-overlay-pane.no-scroll .mat-mdc-dialog-content {
+  overflow: visible !important;
+  max-height: none !important;
+  padding: 0 !important;
+}
+
+/* 給預排班 dialog 用，把高度撐滿，蓋掉前面那條 auto */
+.cdk-overlay-pane.no-scroll.schedule-dialog-panel .all-flex {
+  min-height: 100% !important;
+}
+
+
+//讓dailog可以自動縮放
+.cdk-overlay-pane.no-scroll .all-flex {
+  min-height: auto !important;
+}
+
+/* 只在 Dialog 開啟時，保險地關掉整頁水平捲軸 */
+body.cdk-global-scrollblock {
+  overflow-x: hidden !important;
+}
+
+/* 移除 Angular Material 外層白底，只保留你自己寫的 dialog-content */
+.shift-dialog-panel .mat-mdc-dialog-surface {
+  //強制把這個元素的背景色改成透明。
+  background: transparent !important;
+  //把預設的陰影效果強制取消。
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+
+// 以下國恆的後端設定
+
+/* DayPilot 區塊統一 box-sizing（只影響 DayPilot，不影響整站）*/
+.daypilot-scheduler-wrapper *,
+.daypilot-scheduler-wrapper *::before,
+.daypilot-scheduler-wrapper *::after {
+  box-sizing: border-box !important;
+}
+
+/* DayPilot: 隱藏 event 上方那條 bar */
+.daypilot-scheduler-wrapper .scheduler_default_event_bar {
+  display: none !important;
+}
+
+
+/* 左邊列（row header）整列背景 */
+.scheduler_default_rowheader {
+  // background: linear-gradient(180deg, #7be6d6, #e9edec) !important;
+  background-color: #8eb69b !important;
+  border-right: 1px solid rgba(229, 12, 12, 0.06) !important;
+  color: #ffffff !important;
+
+  &:hover {
+    background-color: #fa0;
+  }
+}
+
+/* 左邊欄內部 cell（若 DayPilot 用不同子元素） */
+.scheduler_default_rowheader .scheduler_default_rowheader_cell,
+.scheduler_default_rowheader .scheduler_default_rowheader_inner {
+  background: transparent !important;
+  /* 讓上面 gradient 顯示 */
+  color: inherit !important;
+}
+
+/* 上方欄（整個 header 的背景）*/
+.scheduler_default_header,
+.scheduler_default_columnheader {
+  background: linear-gradient(180deg, #237f51, #ffffff) !important;
+  // border-bottom: 1px solid rgba(22, 174, 255, 0.06) !important;
+  // color: #2f3e46 !important;
+}
+
+/* 上方每個日期格的樣式（若要改每格） */
+:host :ng-deep .scheduler_default_timeheadercol_inner .scheduler_default_timeheader_cell_inner .scheduler_default_columnheader_cell .scheduler_default_timeheader_scroll .scheduler_default_timeheadergroup_inner .scheduler_default_timeheadercol_inner .scheduler_default_timeheader_float .scheduler_default_timeheadercol .scheduler_default_timeheader_cell {
+  background: transparent !important;
+  background: #ffffff !important;
+  background-color: #ffffff;
+  color: #1e1e1e !important;
+  font-weight: 600;
+}
+
+:host ::ng-deep .custom-dialog-container {
+  background-color: #00000000; // 你想要的背景色
+  border-radius: 2000px; // 可選圓角
+}
+
+// salary
+.sa .mat-mdc-table thead,
+.sa .mat-mdc-table .mat-mdc-header-cell {
+  background: #fdedc7 !important;
+}
+
+// leave
+.le .mat-mdc-table thead,
+.le .mat-mdc-table .mat-mdc-header-cell {
+  background: #fdedc7 !important;
+}
+

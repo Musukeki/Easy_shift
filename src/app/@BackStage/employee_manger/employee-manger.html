@@ -1,0 +1,109 @@
+<div class="page-container em">
+  <div class="page-header">
+    <h2>員工管理</h2>
+    <button
+      mat-raised-button
+      color="accent"
+      class="redesigned-add-btn"
+      (click)="showAddDialog()"
+    >
+      <mat-icon style="margin-top: 4.5px">person_add</mat-icon> 新增員工
+    </button>
+  </div>
+
+  <div class="filter-section">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>搜尋姓名 / Email / 電話</mat-label>
+      <input
+        matInput
+        (keyup)="searchData()"
+        [(ngModel)]="searchText"
+        placeholder="輸入關鍵字"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="status-select">
+      <mat-label>任職狀態</mat-label>
+      <mat-select (selectionChange)="onStateChange()" [(ngModel)]="searchState">
+        <mat-option value="">全部</mat-option>
+        <mat-option value="在職中">在職中</mat-option>
+        <mat-option value="已離職">已離職</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="status-select">
+      <mat-label>職位</mat-label>
+      <mat-select (selectionChange)="onStateChange()" [(ngModel)]="searchTitle">
+        <mat-option value="">全部</mat-option>
+        <mat-option value="主管">主管</mat-option>
+        <mat-option value="正職員工">正職員工</mat-option>
+        <mat-option value="計時人員">計時人員</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="table-container">
+    <table
+      mat-table
+      class="mat-elevation-z2 employee-table"
+      [dataSource]="dataSource"
+    >
+      <!-- 員工編號 -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>員工編號</th>
+        <td mat-cell *matCellDef="let e">{{ e.id }}</td>
+      </ng-container>
+
+      <!-- 名字 -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>員工姓名</th>
+        <td mat-cell *matCellDef="let e">
+          <label (click)="showEditDialog(e.id)" class="clickable-text"
+            >{{ e.name }}</label
+          >
+        </td>
+      </ng-container>
+
+      <!-- 任職狀態 -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>任職狀態</th>
+        <td mat-cell *matCellDef="let e">{{ e.employmentStatus }}</td>
+      </ng-container>
+
+      <!-- Email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let e">{{ e.email }}</td>
+      </ng-container>
+
+      <!-- 電話 -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>電話</th>
+        <td mat-cell *matCellDef="let e">{{ e.phone }}</td>
+      </ng-container>
+
+      <!-- 部門 -->
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef>部門</th>
+        <td mat-cell *matCellDef="let e">{{ e.department }}</td>
+      </ng-container>
+
+      <!-- 職位 -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>職位</th>
+        <td mat-cell *matCellDef="let e">{{ e.title}}</td>
+      </ng-container>
+
+      <!-- 表頭與資料列 -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[20, 50, 100]"
+      showFirstLastButtons
+      aria-label="選擇每頁筆數"
+    >
+    </mat-paginator>
+  </div>
+</div>

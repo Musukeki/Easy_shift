@@ -1,0 +1,170 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+/* Dialog 容器 */
+.mat-dialog-container {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #f4f6fb !important;
+  padding: 32px !important;
+}
+
+/* 標題 */
+.page-title {
+  font-size: 1.6rem;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  // margin-bottom: 24px;
+
+  color: #2c3e50;
+}
+
+/* 卡片容器 */
+.form-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 輸入區塊排列 */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* 輸入欄位 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #34495e;
+  font-size: 0.95rem;
+}
+.form-group input,
+.form-group select {
+  padding: 8px 10px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  height: 40px;
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+  outline: none;
+}
+
+/* 表格區 */
+.preview-list {
+  margin-top: 20px;
+}
+.preview-list h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: left;
+}
+.table-wrapper {
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid #e1e4e8;
+  tr > th {
+    color: #235347;
+    background: #daf1de;
+  }
+}
+.preview-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.preview-list th,
+.preview-list td {
+  padding: 10px 8px;
+  text-align: center;
+}
+.preview-list th {
+  background: #f0f4ff;
+  color: #2c3e50;
+  font-weight: 600;
+  border-bottom: 2px solid #d0d7de;
+}
+.preview-list tr:nth-child(even) {
+  background: #fafafa;
+}
+.preview-list tr:hover {
+  background: #fefce7;
+}
+
+/* 按鈕區 */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.form-actions.bottom {
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+  margin-top: 28px;
+  justify-content: center;
+}
+
+/* 按鈕樣式 */
+.btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #3f7fcf, #2f6cb0);
+}
+.btn-cancel {
+  background: #e0e0e0;
+  color: #333;
+}
+.btn-cancel:hover {
+  background: #c8c8c8;
+}
+
+/* 小圓刪除按鈕 */
+.btn-circle {
+  background: #e17272;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.btn-circle:hover {
+  background: #e45e4f;
+}

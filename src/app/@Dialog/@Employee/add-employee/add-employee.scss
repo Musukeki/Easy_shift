@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+/* 📦 整體表單容器（包含 form-body） */
+.form-container {
+  display: flex;
+  flex-direction: column; // 垂直排列
+  gap: 16px;               // 元素間距
+  padding: 20px;           // 內距
+}
+
+/* 🧾 表單主體（form）內部欄位排版 */
+.form-body {
+  display: flex;
+  flex-direction: column; // 垂直排列每個欄位
+  gap: 16px;               // 欄位間距
+}
+
+/* 📋 單一欄位（mat-form-field）的寬度控制 */
+.form-field {
+  width: 100%; // 讓欄位填滿容器
+}
+
+/* 🔘 所有自訂按鈕的共用樣式 */
+.custom-button {
+  min-width: 70px;             // 最小寬度
+  padding: 8px 20px;           // 內距（上下、左右）
+  margin: 0 7px;               // 左右間距
+  font-weight: 500;           // 文字粗細
+  font-size: 15px;            // 字體大小
+  border-radius: 6px;         // 圓角
+}
+
+/* ❌ 取消按鈕樣式 */
+.cancel-btn {
+  color: #666;     // 字體顏色（灰色）
+  border-color: #ccc; // 邊框顏色（淺灰）
+}
+
+/* ✅ 新增按鈕樣式 */
+.add-btn {
+  background-color: #1976d2; // 藍色背景
+  color: white;              // 白色文字
+
+  &:hover {
+    background-color: #1565c0; // 滑鼠移入時加深藍色
+  }
+}
+
+/* 檢查樣式 */
+.error-label {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+}
+

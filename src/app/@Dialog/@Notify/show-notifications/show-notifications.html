@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <h2>{{notify.title}}</h2>
+
+  <p class="date">開始時間：<span>{{notify.createdDate}}</span></p>
+
+  <textarea class="content" readonly [value]="notify.message?.trim()">
+  </textarea>
+
+  @if (notify.linkUrl) {
+  <a
+    class="link"
+    target="_blank"
+    style="color: #3f51b5; font-weight: 600"
+    href="{{notify.linkUrl}}"
+    >相關連結</a
+  >
+  }
+</div>
+<button class="close-btn" (click)="close()">關閉</button>

@@ -1,0 +1,216 @@
+/* ==================== 全域設定 ==================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important; /* 統一 box-sizing，避免 padding/邊框計算問題 */
+}
+
+/* ==================== 員工卡片 ==================== */
+.employee-card {
+  position: relative; /* 讓子元素 (如按鈕區塊) 可以絕對定位 */
+}
+
+/* 小標題：區塊標題 */
+.section-title {
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 卡片內的操作按鈕區塊 (浮在左下角) */
+.action-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* ==================== 浮動標籤輸入框 (float label) ==================== */
+.fl-group {
+  position: relative;
+  font-size: 14px;
+
+  /* 輸入框樣式 */
+  input {
+    width: 100%;
+    padding: 16px 12px 10px;
+    border: 1px solid #c8c8c8;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+
+  /* 輸入框聚焦效果 */
+  input:focus {
+    border-color: #34699A;
+    box-shadow: 0 0 0 3px rgba(52, 105, 154, 0.12);
+  }
+
+  /* 預設標籤位置 (浮動前) */
+  label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    padding: 0 4px;
+    color: #777;
+    pointer-events: none; /* 防止點擊穿透影響輸入框 */
+    transition: all .15s ease-in-out;
+  }
+
+  /* 當輸入框聚焦 或 有值時 → 標籤浮起 */
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: -8px;
+    transform: none;
+    font-size: 12px;
+    color: #34699A;
+    background: #fff;
+  }
+
+  &-select {
+    padding: 10px !important;
+    border-radius: 8px;
+    border: 1px solid #9f9f9f;
+  }
+  &-label {
+    font-size: 12px !important;
+    background-color: #fff !important;
+    top: 0 !important;
+    color: #34699A !important;
+  }
+}
+
+/* ==================== 只讀顯示區塊 ==================== */
+.info-readonly {
+  display: grid;
+  grid-template-columns: 90px 1fr; /* 左邊 label 固定寬度，右邊自動延伸 */
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 8px;
+  background: #fafafa;
+
+  /* 左邊文字 (標籤) */
+  .info-readonly-label {
+    color: #666;
+    font-size: 13px;
+  }
+
+  /* 右邊文字 (值) */
+  .info-readonly-value {
+    color: #222;
+  }
+}
+
+/* ==================== 資訊區塊網格 ==================== */
+.info-grid {
+  display: grid;
+  gap: 16px; /* 每個欄位之間間距 */
+}
+
+.info-wrapper-top {
+  display: grid;
+  gap: 16px;
+}
+
+.info-item {
+  width: 100%; /* 確保項目填滿 */
+}
+
+/* ==================== Dialog (彈窗) ==================== */
+.employee-dialog {
+  /* 員工標題 */
+  .employee-title {
+    margin: 0 0 12px;
+  }
+
+  /* 編輯操作區 (按鈕群) */
+  .edit-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 12px;
+  }
+
+  /* 編輯按鈕 */
+  .edit-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background: #34699A;
+    color: #fff;
+    transition: background-color .3s ease, color .3s ease;
+
+    &:hover {
+      background: #578fca;
+    }
+    &:active {
+      background: #2e5e8b;
+    }
+  }
+
+  /* 確定/取消按鈕 */
+  .confirm-btn,
+  .cancel-btn {
+    margin-bottom: 7px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color .3s ease, color .3s ease;
+  }
+
+  /* 確定 (藍色) */
+  .confirm-btn {
+    background: #34699A;
+    color: #fff;
+
+    &:hover {
+      background: #578fca;
+    }
+    &:active {
+      background: #2e5e8b;
+    }
+  }
+
+  /* 取消 (灰色) */
+  .cancel-btn {
+    background: #f1f1f1;
+    color: #333;
+
+    &:hover {
+      background: #e2e2e2;
+    }
+    &:active {
+      background: #d6d6d6;
+    }
+  }
+}
+
+/* ==================== 表單底部 (操作按鈕區) ==================== */
+.form-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+
+  .cancel-btn {
+    margin-left: 8px;
+  }
+}
+
+/* ==================== Dialog 內邊距調整 ==================== */
+.mat-mdc-dialog-content,
+.mdc-dialog__content,
+.employee-dialog {
+  padding-bottom: 0 !important; /* 移除底部多餘間距 */
+}
+
+/* ==================== 表單錯誤訊息 ==================== */
+.error-label {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-bottom: 7px; /* 下方間距 */
+  display: block;
+}

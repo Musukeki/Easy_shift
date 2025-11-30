@@ -1,0 +1,64 @@
+<div class="update-wrapper">
+  <div class="update-title">
+    <h2>更新班表</h2>
+    <div class="update-shift-name">
+      <img src="person.png" width="18" height="18" alt="" />
+      <p>{{shiftList[0].name}} - {{shiftList[0].employeeId}}</p>
+    </div>
+  </div>
+  <div class="work-item">
+    <!--  -->
+    @for (shift of shiftList; track $index; let i = $index) {
+    <!--  -->
+    @if (!shift.isEdit) {
+    <div class="work-group">
+      <div class="work-row-group">
+        <div class="work-row">
+          <label class="label-title">上班日期：</label>
+          <label class="label-value">{{ shift.applyDate }}</label>
+        </div>
+        <div class="work-row">
+          <label class="label-title">上班時段：</label>
+          <label class="label-value"
+            >{{ shift.startTime }} ~ {{ shift.endTime }}</label
+          >
+        </div>
+      </div>
+      <div class="work-actions">
+        <button class="btn-edit" (click)="changeType(i)">編輯</button>
+        <button class="btn-delete" (click)="cancelShift(i)">取消班別</button>
+      </div>
+    </div>
+    } @else {
+    <div
+      class="active-wrapper"
+      style="display: flex; align-items: center; justify-content: space-between"
+    >
+      <div style="">
+        <div class="work-row work-row-active" style="margin-bottom: 4px">
+          <label class="label-title">上班日期：</label>
+          <input
+            type="date"
+            [(ngModel)]="shift.applyDate"
+            [min]="tomorrow"
+            [max]="limit"
+          />
+        </div>
+        <div class="work-row">
+          <label class="label-title">上班時段：</label>
+          <select [(ngModel)]="shift.shiftWorkId" style="width: 150px">
+            @for (item of timeList; track $index) {
+            <option [value]="$index+1">{{ item }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="work-actions">
+        <button class="btn-save" (click)="updateItem(i)">儲存</button>
+        <button class="btn-cancel" (click)="changeType(i)">取消</button>
+      </div>
+    </div>
+
+    } }
+  </div>
+</div>

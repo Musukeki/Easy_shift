@@ -1,0 +1,66 @@
+
+
+
+<!-- !? -->
+<div id="vanta-bg"></div>
+<div class="page">
+  <div class="card" [class.show]="show">
+    <h1 class="title">{{ displayLabel }}</h1>
+    
+
+    <!-- 一般情況：有 key 的欄位 (name, age) -->
+    @if (step.key; as key) {
+      <input #autoFocusInput
+             class="field"
+             [type]="step.type || 'text'"
+             [placeholder]="step.placeholder || ''"
+             [(ngModel)]="form[key]"
+             (keyup.enter)="onEnter()"
+         />
+    }
+
+    <!-- 特殊情況：passwordSuccess 顯示等待動畫 -->
+    @if (step.id === 'passwordSuccess') {
+      <mat-progress-bar class="progress-bar" mode="indeterminate" color="accent"></mat-progress-bar>
+      <p style="margin-top:10px; font-weight: bold;   color: #7e6959;" class="progress-text">
+        {{ statusMsg }}
+      </p>
+    }
+
+    <!-- 特殊情況：credentials 同一頁兩個欄位 -->
+    <!-- 當 idLocked = true 時，輸入框就變成唯讀（不能再修改）。 -->
+    <!-- autocomplete 防止瀏覽器自動帶入舊輸入值 -->
+    @if (step.id === 'credentials') {
+      <input
+        #autoFocusInput 
+        class="field"
+        type="text"
+        [(ngModel)]="form.employeeId"
+        [readonly]="idLocked"  />
+    
+      <input 
+
+        #passwordInput
+        class="field"
+        type="password"
+        placeholder="密碼"
+        [(ngModel)]="form.loginPassword" 
+        (keyup.enter)="onEnter()" />
+    }
+    
+
+
+    <!-- 進度點點 -->
+    <!-- track i 這個元素的唯一身份就用索引值 i -->
+    <!-- active 這個 class 會不會加上去，由 條件判斷 (i === index) 決定 -->
+    @if (step.id !== 'done') {
+      <div class="dots">
+        @for (s of steps; track i; let i = $index) {
+          <span [class.active]="i === index"></span>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+

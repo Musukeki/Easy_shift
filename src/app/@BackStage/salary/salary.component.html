@@ -1,0 +1,77 @@
+<div class="toolbar">
+  <div class="header toolbar-center">
+    <mat-icon class="nav-icon toolbar-left" (click)="preMonth()"
+      >chevron_left</mat-icon
+    >
+    <span class="month-label">{{ currentMonthLabel }}</span>
+    <mat-icon class="nav-icon toolbar-right" (click)="nextMonth()"
+      >chevron_right</mat-icon
+    >
+  </div>
+</div>
+
+<div class="table-container sa">
+  <table mat-table [dataSource]="dataSource" class="employee-table">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        員工編號
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        員工姓名
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        員工職位
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="baseSalary">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        底薪
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.baseSalary }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="overtimePay">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        加班費
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.overtimePay }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="deduction">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        遲到請假扣款
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.deduction }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="insuranceFee">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        勞健保
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.insuranceFee }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalSalary">
+      <th mat-header-cell *matHeaderCellDef style="width: 11.11111111%">
+        實際薪資
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.totalSalary }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons>
+  </mat-paginator>
+</div>

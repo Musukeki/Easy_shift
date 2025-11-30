@@ -1,0 +1,131 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+.wrapper {
+  padding: 24px;
+}
+.leave-info-container {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.leave-info-header {
+  display: flex;
+  justify-content: flex-end; /* 靠右 */
+  margin-bottom: 10px;
+
+  position: absolute;
+  right: 0;
+}
+
+// :host ::ng-deep .mdc-button__label {
+//   color: #fff !important;
+// }
+:host ::ng-deep .mat-focus-indicator .btn-bg-secondary {
+  border: 2px solid #fff;
+  border-radius: 1000px;
+  background-color: #7a6b5a !important;
+
+}
+
+:host ::ng-deep .btn-bg-secondary {
+  background: #8eb69b !important;
+  border: 2px solid #fff;
+}
+
+.leave-info-body {
+  // padding: 10px;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between; /* 左右分佈 */
+  align-items: center;
+  margin-bottom: 20px;
+  transition: 0.3s !important;
+  button {
+    transition: 0.3s;
+    height: 40px;
+    background: #e8928a !important;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+}
+
+.title {
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+  background-color: #235347;
+  padding: 12px 8px;
+  border-radius: 8px;
+}
+
+/* Table 外框 */
+.table-container {
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid #cfd8dc;
+  // padding: 15px;
+  background-color: #f0f4ff;
+
+  * {
+    text-align: center;
+  }
+  th {
+    border-bottom: 1px solid #ddd !important;
+  }
+  td {
+    border-bottom: 1px solid #ddd !important;
+  }
+}
+
+/* 表頭 */
+.custom-table th.mat-header-cell {
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+  background-color: #235347;
+  padding: 12px 8px;
+  border-radius: 8px;
+}
+
+/* 表格內容 */
+.custom-table td.mat-cell {
+  text-align: center;
+  color: #1e3a8a;
+}
+
+/* 行 hover 效果 */
+.data-row:hover {
+  // background-color: #dbeafe; /* 淡藍色 */
+}
+
+/* 分頁器調整 */
+.mat-paginator {
+  margin-top: 10px;
+  color: #1e3a8a;
+}
+
+.applyDateBtn {
+  color: #3f51b5;
+  cursor: pointer;
+}
+.mat-mdc-paginator {
+  background-color: #8eb69bc6 !important;
+}
+
+//
+.approve-btn {
+  transition: .3s;
+  &:hover {
+    background: #95a3c825 !important;
+    padding: 8px 12px;
+    border-radius: 1000px;
+    margin-left: -12px;
+  }
+}

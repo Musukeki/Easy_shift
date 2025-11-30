@@ -1,0 +1,134 @@
+<div class="page">
+  <div class="container">
+    <div class="card header lr-wrap">
+      <!-- 標題 + 返回 -->
+      <div class="lr-wrap__head">
+        <div class="page-head">
+          <div class="head-left">
+            <mat-icon>calendar_month</mat-icon>
+            <div>
+              <div class="head-title">請假申請查看</div>
+            </div>
+          </div>
+          <button class="btn-back" routerLink="/leave" type="button">
+            <mat-icon>arrow_back</mat-icon>
+            返回
+          </button>
+        </div>
+      </div>
+
+      <div class="lr-wrap__rail">
+        <div class="month-rail">
+          <button class="rail-nav left" (click)="changeMonth(-1)" aria-label="上一月">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+          <div class="rail-label">
+            <span class="material-symbols-rounded">calendar_month</span>
+            {{ monthDisplay() }}
+          </div>
+          <button class="rail-nav right" (click)="changeMonth(1)" aria-label="下一月">
+            <span class="material-symbols-rounded">chevron_right</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lr-wrap__body">
+        <div class="kpi-grid">
+          <div class="kpi kpi-blue">
+            <div class="kpi-icon"><span class="material-symbols-rounded">description</span></div>
+            <div class="kpi-meta">
+              <div class="kpi-label">列表筆數</div>
+              <div class="kpi-num">{{ kpi.list }}</div>
+            </div>
+          </div>
+          <div class="kpi kpi-yellow">
+            <div class="kpi-icon"><span class="material-symbols-rounded">schedule</span></div>
+            <div class="kpi-meta">
+              <div class="kpi-label">待審核</div>
+              <div class="kpi-num kpi-yellow-txt">{{ kpi.pending }}</div>
+            </div>
+          </div>
+          <div class="kpi kpi-green">
+            <div class="kpi-icon"><span class="material-symbols-rounded">check_circle</span></div>
+            <div class="kpi-meta">
+              <div class="kpi-label">已核准</div>
+              <div class="kpi-num kpi-green-txt">{{ kpi.approved }}</div>
+            </div>
+          </div>
+          <div class="kpi kpi-red">
+            <div class="kpi-icon"><span class="material-symbols-rounded">cancel</span></div>
+            <div class="kpi-meta">
+              <div class="kpi-label">已駁回</div>
+              <div class="kpi-num kpi-red-txt">{{ kpi.rejected }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabbar">
+          <button class="tab" [class.active]="filterStatus === 'all'" (click)="setFilterStatus('all')">全部</button>
+          <button class="tab" [class.active]="filterStatus === 'pending'" (click)="setFilterStatus('pending')">待審核</button>
+          <button class="tab" [class.active]="filterStatus === 'approved'" (click)="setFilterStatus('approved')">已核准</button>
+          <button class="tab" [class.active]="filterStatus === 'rejected'" (click)="setFilterStatus('rejected')">已駁回</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 錯誤/載入 -->
+    @if (errorMsg) {
+      <div class="error">{{ errorMsg }}</div>
+    }
+    @if (loading) {
+      <div class="loading">載入中...</div>
+    }
+
+    <!-- 表格 -->
+    @if (!loading) {
+      <div class="card table-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>員工編號</th>
+                <th>員工姓名</th>
+                <th>請假類型</th>
+                <th>請假時間</th>
+                <th>詳細內容</th>
+                <th>狀態</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @if (filteredRows.length === 0) {
+                <tr>
+                  <td colspan="7" class="empty">
+                    <div class="empty-ic">
+                      <img src="/upload.png" alt="查無資料" />
+                    </div>
+                    <div>查無資料</div>
+                  </td>
+                </tr>
+              } @else {
+                @for (r of filteredRows; track $index) {
+                  <tr class="row">
+                    <td><span class="mono">{{ r.employeeId }}</span></td>
+                    <td>
+                      <div class="emp">
+                        <!-- 取字串第 0 個字 -->
+                        <div class="avatar">{{ r.name?.charAt(0) || '?' }}</div>
+                        <span class="name">{{ r.name }}</span>
+                      </div>
+                    </td>
+                    <td><span class="{{ typeClass(r.leaveType) }}">{{ r.leaveType }}</span></td>
+                    <td><span class="period">{{ tablePeriod(r) }}</span></td>
+                    <td><span class="muted">{{ tableApplyDate(r.leaveId) }}</span></td>
+                    <td><div class="{{ statusClass(r.status) }}">{{ statusLabel(r.status) }}</div></td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,348 @@
+/* ====== 日式 / 和風 變數 ====== */
+:root {
+  --washi-bg: #fbf6f2; /* 和紙米色 */
+  --indigo: #2f3e46; /* 深靛（主文字）*/
+  --muted: #7a6b5a; /* 次文字（墨暖）*/
+  --sakura: #e8b4c8; /* 櫻花粉（點綴）*/
+  --grid-line: rgba(47, 62, 70, 0.06);
+  --cell-bg: rgba(255, 255, 255, 0.86);
+  --radius: 10px;
+  --soft-shadow: 0 6px 20px rgba(47, 62, 70, 0.04);
+}
+
+/* optional page container */
+.app-washi {
+  background: linear-gradient(180deg, #fffdfa 0%, var(--washi-bg) 100%);
+  padding: 18px;
+  color: var(--indigo);
+  -webkit-font-smoothing: antialiased;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // background: linear-gradient(
+  //   180deg,
+  //   rgba(255, 255, 255, 0.96),
+  //   rgba(250, 248, 246, 0.97)
+  // );
+  padding: 24px 20px;
+  border-radius: calc(var(--radius) + 4px);
+  // border: 1px solid rgba(47, 62, 70, 0.03);
+  box-shadow: var(--soft-shadow);
+  gap: 12px;
+}
+
+.toolbar-left {
+  flex: 1;
+  min-width: 0;
+}
+.toolbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.toolbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* nav icon (ink hover) */
+.nav-icon {
+  font-size: 26px;
+  color: #2f3e46 !important;
+  cursor: #9a5370;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+  border: 2px solid #fff;
+
+  background-color: #7eb1a2c4;
+
+  box-shadow: 5px 5px 10px rgba(110, 110, 110, 0.295);
+}
+.nav-icon:hover {
+  transform: translateY(-3px);
+  background: rgba(232, 180, 200, 0.12);
+  color: #9a5370;
+  transition: 0.3s;
+}
+
+/* month label: 和風 pill */
+.month-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--indigo);
+  margin: 0 12px;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #8eb69b;
+  color: #fff;
+  border: 1px solid rgba(47, 62, 70, 0.03);
+  box-shadow: 0 6px 14px rgba(47, 62, 70, 0.02);
+}
+
+/* button styles (pill, muted) */
+.btn-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  min-height: 38px;
+  border: 1px solid rgba(47, 62, 70, 0.04);
+  background: transparent;
+  color: var(--indigo);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.btn-primary {
+  background: linear-gradient(
+    180deg,
+    rgba(232, 180, 200, 0.95),
+    rgba(255, 255, 255, 0.96)
+  );
+  color: #4a2b3a;
+  border: 1px solid rgba(232, 180, 200, 0.28);
+  box-shadow: 5px 5px 10px rgba(110, 110, 110, 0.295);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+}
+.btn-pill:hover {
+  transform: translateY(-2px);
+}
+
+/* helper */
+.mr-8 {
+  margin-right: 8px;
+}
+
+/* ========== TABLE / GRID 樣式（格子邊框） ========== */
+.table-wrapper {
+  margin-top: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(250, 248, 246, 0.98)
+  );
+  border-radius: 12px;
+  border: 1px solid rgba(47, 62, 70, 0.03);
+  padding: 10px;
+  box-shadow: var(--soft-shadow);
+}
+
+/* mat-table / table 基礎 */
+.employee-table {
+  width: 100%;
+  border-collapse: separate; /* 讓 row 有間隔像卡片 */
+  border-spacing: 0 10px;
+  font-size: 14px;
+}
+
+/* header */
+.employee-table .mat-header-row {
+  color: var(--indigo);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* each row looks like soft card with washi separators */
+.employee-table .mat-row {
+  background: var(--cell-bg);
+  border-radius: 10px;
+  border: 1px solid rgba(47, 62, 70, 0.03);
+  box-shadow: 0 6px 18px rgba(47, 62, 70, 0.02);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+  overflow: hidden;
+}
+
+/* cell padding and vertical separators (模仿格子紙線) */
+.employee-table .mat-cell,
+.employee-table .mat-header-cell {
+  padding: 12px 14px;
+  position: relative;
+}
+
+/* vertical separator line (dotted / subtle) */
+.employee-table .mat-cell:not(:last-child)::after,
+.employee-table .mat-header-cell:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(47, 62, 70, 0.06),
+    rgba(47, 62, 70, 0.02)
+  );
+  transform: translateX(50%);
+  border-right: 1px dotted rgba(47, 62, 70, 0.06);
+}
+
+/* hover row lift */
+.employee-table .mat-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(47, 62, 70, 0.06);
+}
+
+/* header underline separation */
+.employee-table .mat-header-row .mat-header-cell {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(47, 62, 70, 0.03);
+}
+
+/* ========== shift-event & shift-box (和風卡片化) ========== */
+::ng-deep .shift-event {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  padding: 8px 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(250, 248, 246, 0.96)
+  );
+  box-shadow: 0 6px 16px rgba(47, 62, 70, 0.02);
+  position: relative;
+  border-radius: 0;
+  // overflow: hidden;
+}
+
+/* left washi accent stripe (根據班別可改色) */
+::ng-deep .shift-event::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 12%;
+  bottom: 12%;
+  width: 6px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 180, 200, 0.9),
+    rgba(232, 180, 200, 0.55)
+  );
+  box-shadow: 0 4px 10px rgba(232, 180, 200, 0.06);
+}
+
+/* event badge time */
+::ng-deep .shift-event .event-badge {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(47, 62, 70, 0.04);
+  color: var(--muted);
+  border: 1px solid rgba(47, 62, 70, 0.02);
+}
+
+/* hover lift */
+::ng-deep .shift-event:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 56px rgba(47, 62, 70, 0.06);
+}
+
+/* shift-box */
+::ng-deep .shift-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--indigo);
+}
+
+/* shift type variants */
+::ng-deep .shift-event.morning::before {
+  background: linear-gradient(180deg, #ffd9c7, #ffb4a2);
+}
+::ng-deep .shift-event.noon::before {
+  background: linear-gradient(180deg, #fff1d6, #ffd97a);
+}
+::ng-deep .shift-event.night::before {
+  background: linear-gradient(180deg, #d8e6ff, #a8c8ff);
+}
+.scheduler_default_event .shift-event {
+  border-radius: 0 !important;
+}
+.scheduler_default_event_inner {
+  border: 0;
+  padding: 1px !important;
+  border-radius: 0;
+}
+.shift-event {
+  border-radius: 0;
+}
+
+.daypilot-scheduler-wrapper {
+  // outline: 1px solid #7a7a7a !important;
+  // background-color: #fff;
+  position: relative;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    // outline: 1px solid #a2a2a2;
+  }
+}
+
+.month-label {
+  font-size: 20px;
+}
+
+:host ::ng-deep .mdc-button__label {
+  color: #fff !important;
+}
+:host ::ng-deep .mat-focus-indicator .btn-bg-secondary {
+  border: 2px solid #fff;
+  border-radius: 1000px;
+  background-color: #7a6b5a !important;
+}
+
+:host ::ng-deep .btn-bg-secondary {
+  background: #8eb69b !important;
+  border: 2px solid #fff;
+}
+
+:host ::ng-deep .btn-bg-auto {
+  background: #e8928a !important;
+  border: 2px solid #fff;
+}
+
+/* responsive */
+@media (max-width: 880px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+  }
+  .month-label {
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+}

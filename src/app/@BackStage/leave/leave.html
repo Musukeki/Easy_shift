@@ -1,0 +1,117 @@
+<div class="wrapper le">
+  @if(changeType){
+  <div class="leave-info-container">
+    <div class="leave-info-header">
+      <button
+        class="btn-bg-secondary"
+        mat-raised-button
+        color="primary"
+        (click)="showLeaveInfo()"
+        style="color: #fff"
+      >
+        返回
+      </button>
+    </div>
+
+    <div class="leave-info-body">
+      <app-view-leave-info></app-view-leave-info>
+    </div>
+  </div>
+  }@else{
+  <div class="header-bar">
+    <h2 class="title">請假管理</h2>
+    <button mat-raised-button color="primary" (click)="showLeaveInfo()">
+      請假資訊
+    </button>
+  </div>
+
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="custom-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef style="width: 16.66666666667%">
+          員工編號
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.employeeId}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef style="width: 16.66666666667%">
+          員工姓名
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef style="width: 16.66666666667%">
+          請假類型
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.leaveType}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="apply_date">
+        <th mat-header-cell *matHeaderCellDef style="width: 16.66666666667%">
+          詳細內容
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <label
+            class="applyDateBtn"
+            (click)="showLeaveTime(element.leaveId,element.leaveProve)"
+          >
+            查看
+          </label>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            style="color: #6ea77c; border: none; background: transparent; cursor: pointer;"
+            color="primary"
+            (click)="approvedLeave(element)"
+            data-name="{{element.employeeId}}"
+            id="{{element.leaveId}}"
+            class="approve-btn"
+          >
+            同意
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deny">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            style="color: #dd6565"
+            mat-button
+            color="warn"
+            (click)="disagreeLeave(element)"
+            data-name="{{element.employeeId}}"
+            id="{{element.leaveId}}"
+          >
+            不同意
+          </button>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="header-row"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        class="data-row"
+      ></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 15, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+  }
+</div>

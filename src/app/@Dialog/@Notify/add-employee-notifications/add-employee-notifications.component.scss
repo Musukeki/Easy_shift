@@ -1,0 +1,123 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+/* 整體表單排版 */
+.notification-form {
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  // max-width: 600px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  border-radius: 10px;
+
+  overflow-y: auto;
+  height: 520px;
+  scrollbar-width: thin;
+  scrollbar-color: #5d9c88 #f1f5f9;
+}
+
+/* 標題樣式 */
+.dialog-title {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #235347;
+  /* 深藍字體 */
+  margin: 0;
+  padding: 20px 0;
+  font-weight: 600;
+}
+
+/* 每個欄位容器 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+}
+
+/* 標籤樣式 */
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #3f51b5 !important;
+}
+
+/* 輸入框和 textarea 樣式 */
+.form-control {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* 聚焦效果 */
+.form-control:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* 按鈕群組排版 */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  // margin-top: 10px;
+}
+
+/* 通用按鈕樣式 */
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+/* 儲存按鈕 */
+.btn.submit {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn.submit:hover {
+  background-color: #357ab8;
+}
+
+.btn.draft {
+  background-color: #ffd54f;
+  color: #333;
+}
+
+.btn.draft:hover {
+  background-color: #ffca28;
+}
+
+/* 取消按鈕 */
+.btn.cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn.cancel:hover {
+  background-color: #c2c2c2;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px 16px;
+}

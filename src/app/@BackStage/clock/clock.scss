@@ -1,0 +1,209 @@
+/* 📦 整體頁面容器 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+.page-container {
+  padding: 24px;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 📌 頁面標題樣式 */
+h2 {
+  margin-bottom: 16px;
+  color: #3f51b5; // 主色調藍色
+  box-shadow: 4px 4px 12px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔍 篩選區容器設定（搜尋框 + 下拉選單） */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+.search-box .mdc-notched-outline .mdc-notched-outline--upgraded {
+  border: 2px solid #000 !important;
+}
+
+/* ➕ 新增按鈕容器（與表單對齊） */
+.add-button-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  height: 56px; // 與 mat-form-field 同高
+}
+
+/* 🔎 搜尋框寬度設定 */
+.search-box {
+  flex: 1 1 300px;
+  min-width: 200px;
+}
+
+/* ✅ 任職狀態 / 職位 下拉選單寬度 */
+.status-select {
+  width: 200px;
+}
+
+/* 🖱️ 新增按鈕的高度設定（與其他欄位對齊） */
+.add-btn {
+  height: 56px;
+}
+
+/* 📋 員工資料表格樣式 */
+.employee-table {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden; // 去除邊角外溢
+}
+
+/* 📌 表格標題欄與資料欄的基本樣式 */
+.mat-header-cell,
+.mat-cell {
+  padding: 12px 16px;
+  font-size: 14px;
+  white-space: nowrap; // 不換行
+}
+
+/* 📌 表頭樣式 */
+.mat-header-cell {
+  font-weight: bold;
+  background-color: #f5f5f5; // 淺灰背景
+  color: #333; // 深文字
+}
+
+/* 🪄 表格斑馬線樣式（偶數行） */
+.mat-row:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* 🧑‍💼 新增員工按鈕樣式 */
+.redesigned-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  background: linear-gradient(to right, #42a5f5, #478ed1); // 漸層背景
+  color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16); // 陰影效果
+  transition: all 0.2s ease-in-out; // 滑鼠移入動畫
+
+  &:hover {
+    background: linear-gradient(to right, #2196f3, #1976d2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); // 增強陰影
+  }
+
+  mat-icon {
+    font-size: 20px; // icon 大小
+  }
+}
+
+/* 🧾 頁首區域（標題 + 按鈕） */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  transition: 0.3s !important;
+
+  h2 {
+    margin: 0;
+    color: #fff;
+    font-weight: 600;
+    background-color: #235347;
+    padding: 12px 8px;
+    border-radius: 8px;
+  }
+
+  button {
+    transition: 0.3s;
+    height: 40px;
+    background: #e8928a !important;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+}
+
+/* 🔵 可點擊文字樣式（如員工姓名） */
+.clickable-text {
+  color: rgb(67, 67, 234);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #1e40af; // 深藍色，增加可點擊感
+  }
+}
+
+//
+
+.table-wrapper {
+  // padding: 8px;
+  // padding-top: 8px;
+  // padding-bottom: 8px;
+  padding: 8px;
+  // background-color: #8eb69b;
+  border-radius: 8px 8px 16px 16px;
+  position: relative;
+  overflow: hidden !important;
+  box-shadow: 12px 12px 12px 1px rgba(0, 0, 0, 0.2);
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border: 8px solid #235347;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px 4px 16px 16px;
+    z-index: -1;
+  }
+}
+
+:host ::ng-deep .mdc-data-table__content {
+  z-index: 30 !important;
+}
+
+:host ::ng-deep .mat-mdc-paginator-container {
+  background-color: #235347 !important;
+  // border-radius: 0 0 16px 16px !important;
+  overflow: hidden !important;
+  z-index: 99;
+  // margin: 0 -8px 0;
+  width: 110%;
+  outline: #235347 8px solid;
+  background: #235347;
+  margin-top: 8px;
+  color: #fff !important;
+}
+
+:host ::ng-deep .mat-mdc-table {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+:host ::ng-deep .mat-mdc-header-cell {
+  border-bottom-color: #8eb69b !important;
+}
+:host ::ng-deep .mat-mdc-cell {
+  border-bottom-color: #8eb69b !important;
+  color: #333;
+}
+
+:host ::ng-deep .mat-mdc-select {
+  color: #fff;
+}
+
+:host ::ng-deep .mat-mdc-paginator-icon .path {
+  color: #fff !important;
+  background-color: #fff !important;
+}
+
+:host ::ng-deep .mat-mdc-header-cell {
+  color: #235347;
+}

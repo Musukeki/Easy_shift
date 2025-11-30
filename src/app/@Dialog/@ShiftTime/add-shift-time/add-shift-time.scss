@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+.shift-form-blue {
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 25px 30px;
+  background: #e6f0fa; /* 淺藍背景 */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 70, 150, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #03396c;
+}
+
+.shift-form-blue h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #034078;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #03396c;
+}
+
+.form-group input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #88b0e0;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #0563af;
+  box-shadow: 0 0 5px rgba(5, 99, 175, 0.3);
+  outline: none;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #0563af;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #034e8c;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #cbd6e3;
+  color: #034078;
+}
+
+.btn-secondary:hover {
+  background-color: #b0c4dc;
+  transform: translateY(-2px);
+}

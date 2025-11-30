@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+.dialog-title {
+  text-align: center;       // 標題置中
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;  // 按鈕置中
+  gap: 16px;                // 按鈕之間間距
+  margin-top: 16px;
+}

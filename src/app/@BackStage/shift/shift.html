@@ -1,0 +1,47 @@
+@if(preShiftCheck){
+<app-accept-shift (back)="showAcceptShift()"></app-accept-shift>
+}@else {
+<div class="toolbar">
+  <div class="toolbar-left">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-bg-auto"
+      (click)="autoShiftCheck()"
+    >
+      自動排班
+    </button>
+  </div>
+
+  <div class="toolbar-center">
+    <mat-icon class="nav-icon" (click)="previousMonth()">chevron_left</mat-icon>
+    <span class="month-label">{{ currentMonthLabel }}</span>
+    <mat-icon class="nav-icon" (click)="nextMonth()">chevron_right</mat-icon>
+  </div>
+
+  <div class="toolbar-right">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="showAcceptShift()"
+      style="margin-right: 7px"
+      class="btn-bg-secondary"
+    >
+      確認預排班
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-bg-secondary"
+      (click)="showShiftWork()"
+    >
+      新增排班
+    </button>
+  </div>
+</div>
+
+<div class="daypilot-scheduler-wrapper">
+  <daypilot-scheduler [config]="config" [events]="events"></daypilot-scheduler>
+</div>
+
+}

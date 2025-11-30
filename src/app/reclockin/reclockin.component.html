@@ -1,0 +1,107 @@
+<div class="reclockin-root">
+
+  <div class="dialog-header">
+
+    <button class="makeup-solid-btn" (click)="openMakeupDialog()">補打卡申請</button>
+      
+    <button mat-icon-button (click)="closeAndRefresh()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+
+  </div>
+
+  <div class="attendance-container">
+    <!-- 標題 -->
+    <div class="header">
+      <div class="company-name">打卡系統</div>
+      <div class="welcome-text">歡迎使用打卡系統</div>
+    </div>
+
+    <div class="time-display">
+      <div class="current-time">{{ currentTime }}</div>
+      <div class="current-date">{{ currentDate }}</div>
+    </div>
+
+    <div class="button-container">
+      <button class="clock-in-btn" (click)="leftAction()" [disabled]="leftDisabled">
+        {{ leftLabel }}
+      </button>
+      <button class="clock-out-btn" (click)="rightAction()" [disabled]="rightDisabled">
+        {{ rightLabel }}
+      </button>
+    </div>
+
+    @if (clockInTime || clockOutTime || restStart || restEnd) {
+    <div class="attendance-record">
+      <h3>今日打卡記錄</h3>
+
+      @if (clockInTime) {
+      <div class="record-item">
+        <span class="record-label">上班時間：</span>
+        <span class="record-time">{{ formatDisplayTime(clockInTime) }}</span>
+      </div>
+      }
+      @if (clockOutTime) {
+      <div class="record-item">
+        <span class="record-label">下班時間：</span>
+        <span class="record-time">{{ formatDisplayTime(clockOutTime) }}</span>
+      </div>
+      }
+
+      @if (workDuration) {
+      <div class="work-duration-card">
+        <div class="duration-chip">工作時長：{{ workDuration }}</div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  @if (showMoodRating) {
+  <div class="modal-overlay" (click)="closeMoodRating()">
+    <div class="mood-modal" (click)="$event.stopPropagation()">
+      <div class="mood-header">
+        <div class="mood-icon">😊</div>
+        <h2 class="mood-title">評價今日心情</h2>
+        <p class="mood-subtitle">請為您今天的工作心情評分</p>
+      </div>
+<!-- mouseenter（滑鼠指標進入元素時觸發）、mouseleave（滑鼠指標離開元素時觸發） -->
+      <div class="star-rating">
+        @for (star of [1,2,3,4,5]; track star) {
+        <button class="star-button" (mouseenter)="setHoveredStar(star)" (mouseleave)="setHoveredStar(0)"
+          (click)="setMoodRating(star)">
+          <svg class="star-icon" [class.star-filled]="star <= (hoveredStar || moodRating)" width="36" height="36"
+            viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 
+                     1.18 6.88L12 17.77l-6.18 3.25L7 14.14 
+                     2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </button>
+        }
+      </div>
+
+      <div class="mood-description">
+        <span class="mood-text">{{ getMoodText(hoveredStar || moodRating) }}</span>
+      </div>
+
+      <div class="mood-buttons">
+        <button class="mood-btn cancel-btn" (click)="closeMoodRating()">取消</button>
+        <button class="mood-btn confirm-btn" (click)="completeClockOut()" [disabled]="moodRating === 0">
+          確定打卡
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+  
+  @if (showModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <!-- <div class="success-icon">{{ modalData.icon }}</div> -->
+      <div class="modal-title">{{ modalData.title }}</div>
+      <div class="modal-content" [innerHTML]="modalData.content"></div>
+      <button class="close-btn" (click)="closeModal()">確定</button>
+    </div>
+  </div>
+  }
+</div>

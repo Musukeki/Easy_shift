@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box !important;
+}
+/* 整體容器 */
+.opinion-page-container {
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 載入中動畫 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ccc;
+  border-top-color: #3f51b5;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 主要版面：左右分欄 */
+.content-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 12px;
+  height: 100%;       /* 讓內容撐滿 dialog 高度 */
+  overflow: hidden;   /* 避免 dialog 出現額外滾動條 */
+}
+@media (max-width: 900px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 區塊標題 */
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #235347;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+/* ---------------- 左側（固定可滾動） ---------------- */
+.opinion-section {
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  // padding-right: 6px;
+  padding: 16px 6px 16px 16px;
+  max-height: 100%;
+}
+.opinion-section::-webkit-scrollbar {
+  width: 6px;
+}
+.opinion-section::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.opinion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.opinion-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.opinion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+.opinion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.opinion-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+.opinion-date {
+  font-size: 13px;
+  color: #666;
+}
+
+/* 展開效果 */
+.opinion-card.expanded {
+  background: #f0f4ff;
+  transform: scale(1.02);
+}
+.opinion-body {
+  margin-top: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}
+.opinion-message {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-wrap;
+}
+
+/* ---------------- 右側（滾動內容） ---------------- */
+.analyze-section {
+  background-color: #f7f8fc;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  overflow-y: auto;
+  max-height: 100%;
+}
+.analyze-section::-webkit-scrollbar {
+  width: 6px;
+}
+.analyze-section::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 4px;
+}
+
+.analyze-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.analyze-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.icon {
+  flex-shrink: 0;
+  font-size: 20px;
+}
+.analyze-text {
+  flex: 1;
+}
+
+/* 顏色標示 */
+.high-risk {
+  border-left: 6px solid #d32f2f;
+  background-color: #fdecea;
+  color: #b71c1c;
+}
+.medium-risk {
+  border-left: 6px solid #fb8c00;
+  background-color: #fff4e5;
+  color: #ef6c00;
+}
+.low-risk {
+  border-left: 6px solid #43a047;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}

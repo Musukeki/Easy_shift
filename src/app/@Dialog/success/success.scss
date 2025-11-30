@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+:host :ng-deep .success-container {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+
+  background-color: #00000000 !important;
+  position: relative;
+}
+
+:host :ng-deep .success-text {
+}

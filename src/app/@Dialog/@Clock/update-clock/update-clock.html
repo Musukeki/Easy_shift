@@ -1,0 +1,19 @@
+@for(item of clockList; track $index) {
+  <div class="clock-card">
+    <h2 class="date">{{ item.workDate }}</h2>
+
+    <div class="clock-time">
+      <span>上班：{{ item.clockOn }}</span>
+      <span>下班：{{ item.clockOff }}</span>
+    </div>
+
+    @if(item.hasDouble) {
+      <p class="double yes">今日是否加倍：有</p>
+    } @else {
+      <p class="double no">今日是否加倍：否</p>
+    }
+
+    <p class="score">今日心情分數：<strong>{{ item.score }}</strong></p>
+    <p class="hours">今日總工時：<strong>{{ item.totalHour }}</strong> 小時</p>
+  </div>
+}

@@ -1,0 +1,86 @@
+<div class="layout-container">
+  <!-- Main 區塊（Sidebar + Content） -->
+  <div class="main-container">
+    <!-- Sidebar -->
+    <div
+      class="sidebar"
+      [ngClass]="{'sidebarOpen': openSide}"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+    >
+      <!-- 中間箭頭 -->
+      <div class="sidebar-toggle" (click)="toggleSidebar()">
+        <mat-icon [ngClass]="{'rotated': openSide}">chevron_right</mat-icon>
+      </div>
+
+      <div class="sidebar-item-list">
+        <div class="sidebar-item" (click)="toggleIcon('')">
+          <mat-icon>home</mat-icon><br />
+          <label>首頁</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('opinion')">
+          <mat-icon>speaker_notes</mat-icon><br />
+          <label>意見回饋</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('shift')">
+          <mat-icon>calendar_today</mat-icon><br />
+          <label>班表查詢</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('clock')">
+          <mat-icon>schedule</mat-icon><br />
+          <label>打卡紀錄</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('salary')">
+          <mat-icon>payments</mat-icon><br />
+          <label>薪資列表</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('leave')">
+          <mat-icon>event_busy</mat-icon><br />
+          <label>請假資訊</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('notifications')">
+          <mat-icon>notifications</mat-icon><br />
+          <label>公告管理</label>
+        </div>
+
+        <div class="sidebar-item" (click)="toggleIcon('employee')">
+          <mat-icon>group</mat-icon><br />
+          <label>職員一覽</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 遮罩 -->
+    <div
+      class="backdrop"
+      [class.show]="openSide"
+      (click)="toggleSidebar()"
+      aria-hidden="true"
+    ></div>
+
+    <!-- 內容區 -->
+    <div class="content">
+      @if (isBackEmployeeManger) {
+      <app-back-employee-manger></app-back-employee-manger>
+      } @if (isBackLeave) {
+      <app-back-leave></app-back-leave>
+      } @if (isBackNotifications) {
+      <app-back-notifications></app-back-notifications>
+      } @if (isBackOpinions) {
+      <app-back-opinion></app-back-opinion>
+      } @if(isBackShift){
+      <app-back-shift></app-back-shift>
+      } @if(isBackClock){
+      <app-back-clock></app-back-clock>
+      } @if(isBackSalary){
+      <app-salary></app-salary>
+      }
+    </div>
+  </div>
+</div>

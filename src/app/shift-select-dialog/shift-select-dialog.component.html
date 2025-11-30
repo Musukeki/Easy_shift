@@ -1,0 +1,50 @@
+<div class="dialog-content">
+  <!-- 關閉 + 新增/移除班別 -->
+  <button class="dialog-close" (click)="cancel()">×</button>
+  <button class="dialog-add" [class.active]="showSecondShift" (click)="toggleSecondShift()">
+    {{ showSecondShift ? '移除班別' : '新增班別' }}
+  </button>
+
+  <h2 class="dialog-header">選擇排班資訊</h2>
+  <div class="dialog-date">{{ dateText }}</div>
+
+  <!-- 班別 -->
+  <div class="form-group">
+    <label class="form-label">班別選擇</label>
+    <select [(ngModel)]="shift" class="form-select">
+      <option value="">請選擇班別</option>
+      <option value="早班">早班</option>
+      <option value="中班">中班</option>
+      <option value="晚班">晚班</option>
+      <option value="夜班">夜班</option>
+    </select>
+  </div>
+
+  <!-- 第二班別 -->
+  @if (showSecondShift) {
+  <div class="form-group">
+    <label class="form-label">第二班別選擇</label>
+    <select [(ngModel)]="shift2" class="form-select">
+      <option value="">請選擇班別</option>
+      <option value="早班">早班</option>
+      <option value="中班">中班</option>
+      <option value="晚班">晚班</option>
+      <option value="夜班">夜班</option>
+    </select>
+  </div>
+  }
+
+  <!-- 特殊選項 -->
+  <div class="form-group">
+    <label class="form-label">特殊選項</label>
+    <div class="checkbox-group">
+      <div class="checkbox-item">
+        <input type="checkbox" [(ngModel)]="dayOff" (change)="onDayOffChange()" />
+        <label for="day-off">這天休息</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 送出 -->
+  <button class="dialog-submit" (click)="confirm()">確認送出</button>
+</div>

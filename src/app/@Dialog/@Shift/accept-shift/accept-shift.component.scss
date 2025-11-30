@@ -1,0 +1,74 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  padding: 24px 20px;
+  border-bottom: 1px solid #ddd;
+
+  .toolbar-left {
+    flex: 1;
+  }
+
+  .toolbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    .nav-icon {
+      font-size: 26px;
+      color: #2f3e46 !important;
+      cursor: #9a5370;
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      transition: 0.3s;
+      cursor: pointer;
+      border: 2px solid #fff;
+
+      background-color: #7eb1a2c4;
+
+      box-shadow: 5px 5px 10px rgba(110, 110, 110, 0.295);
+
+      &:hover {
+        transform: translateY(-3px);
+        background: rgba(232, 180, 200, 0.12);
+        color: #9a5370;
+        transition: 0.3s;
+      }
+    }
+
+    .month-label {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--indigo);
+      margin: 0 12px;
+      letter-spacing: 1px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #8eb69b;
+      color: #fff;
+      border: 1px solid rgba(47, 62, 70, 0.03);
+      box-shadow: 0 6px 14px rgba(47, 62, 70, 0.02);
+    }
+  }
+
+  .toolbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+:host ::ng-deep .mdc-button__label {
+  color: #fff !important;
+}
+:host ::ng-deep .mat-focus-indicator .btn-bg-secondary {
+  border: 2px solid #fff;
+  border-radius: 1000px;
+  background-color: #7a6b5a !important;
+}

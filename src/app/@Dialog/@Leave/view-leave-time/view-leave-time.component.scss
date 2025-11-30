@@ -1,0 +1,111 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+.content {
+  &-text {
+    padding: 4px 8px;
+    background: #ba9879 !important;
+    // background: #e8928a;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 0 0 8px 0;
+    color: #fff;
+  }
+
+  &-info {
+    padding-bottom: 16px;
+
+    .content-text:last-of-type {
+      background: #569686 !important;
+    }
+  }
+}
+
+.leave-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
+}
+
+.leave-info:last-of-type {
+  margin-bottom: 0;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #555;
+  min-width: 75px;
+  /* 固定寬度讓排版整齊 */
+}
+
+.info-value {
+  color: #1976d2;
+  /* Material 主色 */
+  font-weight: 500;
+}
+
+.prove-wrapper {
+  padding: 16px;
+  border-radius: 12px;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prove {
+  display: flex;
+  flex-direction: column;
+  /* 讓標題和圖片垂直排列 */
+  align-items: center;
+  /* 水平置中 */
+  justify-content: center;
+  text-align: center;
+  /* 標題文字也置中 */
+  // margin-top: 12px;
+
+  &-img {
+    border-top: 1px solid #ddd;
+    padding-top: 16px;
+  }
+}
+
+.custom-dialog {
+  padding: 16px !important;
+}
+
+.wrapper {
+  // padding: 0 20px 20px;
+
+  p.title {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #235347;
+    /* 深藍字體 */
+    margin: 0;
+    padding: 20px 0;
+    font-weight: 600;
+  }
+}
+
+.inner-wrapper {
+  max-height: 510px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #5d9c88 #f1f5f9;
+
+  padding: 16px 16px 4px;
+  border-top: 1px solid #ddd;
+}

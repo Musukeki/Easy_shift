@@ -1,0 +1,18 @@
+<div class="shift-form-blue">
+  <h2>新增班表時段</h2>
+
+  <div class="form-group">
+    <label for="startTime">開始時間</label>
+    <input id="startTime" type="time" [(ngModel)]="startTime">
+  </div>
+
+  <div class="form-group">
+    <label for="endTime">結束時間</label>
+    <input id="endTime" type="time" [(ngModel)]="endTime">
+  </div>
+
+  <div class="button-group">
+    <button class="btn-primary" (click)="addShiftTime()">新增</button>
+    <button class="btn-secondary" (click)="OnCancel()">取消</button>
+  </div>
+</div>

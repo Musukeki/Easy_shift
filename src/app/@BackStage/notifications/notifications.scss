@@ -1,0 +1,329 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+/* 整體容器 */
+
+.notice-board {
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 28px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+}
+
+/* 標題與按鈕列 */
+.notice-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 12px;
+
+  button {
+    transition: 0.3s;
+    height: 40px;
+    background: #e8928a !important;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+}
+
+.notice-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3f51b5;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  img {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+    transform: rotate(180deg);
+  }
+}
+
+/* 搜尋區塊 */
+.notice-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-filter label {
+  font-weight: 500;
+  color: #333;
+}
+
+.date-filter input[type="date"] {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.date-filter input[type="date"]:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 4px rgba(63, 81, 181, 0.3);
+}
+
+/* 日期錯誤提示 */
+.date-error {
+  color: #d32f2f;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 單筆通知卡片 */
+.notice-item {
+  border-left: 5px solid #3f51b5;
+  background-color: #f5f7ff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  transition: background-color 0.25s ease;
+  cursor: pointer !important;
+  position: relative;
+  outline: 0px solid rgba(63, 81, 181, 0.5);
+  transition: 0.1s;
+}
+
+.notice-item:hover {
+  background-color: #e8edff !important;
+  outline: 2px solid rgba(63, 81, 181, 0.5);
+  transform: translateY(-2px);
+}
+
+/* 標題與勾勾圖示同行 */
+.notice-header {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.publish-icon {
+  color: #4caf50;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.notice-content {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.notice-message {
+  font-size: 15px;
+  color: #555555;
+  margin: 6px 0;
+  line-height: 1.6;
+  max-height: 160px;
+}
+
+.notice-link {
+  font-size: 14px;
+  color: #1e88e5;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.notice-date,
+.notify-meta {
+  font-size: 13px;
+  color: #777;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+}
+
+/* 已發布的通知 */
+.notice-item.published {
+  cursor: default;
+  background-color: rgba(237, 255, 227, 0.5);
+  border-left-color: #4caf50;
+  transition: 0.1s;
+  outline: 0px solid #74d34183;
+}
+
+.notice-item.published:hover {
+  background-color: rgba(237, 255, 227, 0.8) !important;
+  outline: 2px solid #74d34183;
+}
+
+/* 讓個人通知區與全體通知有一致感但又更柔和 */
+.personal-notice-board {
+  background: linear-gradient(to bottom right, #ffffff, #f9fbff);
+}
+
+/* 個人通知清單 */
+.personal-notice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 單筆通知 */
+.personal-notice-item {
+  background-color: #f3f6ff;
+  border-left: 5px solid #3f51b5;
+  border-radius: 8px;
+  padding: 18px 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  position: relative;
+  outline: 0px solid rgba(63, 81, 181, 0.5);
+  transition: 0.1s;
+}
+
+.personal-notice-item:hover {
+  background-color: #eaf0ff;
+  transform: translateY(-2px);
+  outline: 2px solid rgba(63, 81, 181, 0.5);
+}
+
+/* 標題與狀態列 */
+.personal-notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* 員工姓名與通知標題 */
+.personal-notice-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-name {
+  font-weight: 700;
+  color: #3f51b5;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.notify-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 通知狀態標籤 */
+.notify-status {
+  background-color: #ffb74d;
+  color: #fff;
+  font-size: 13px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.notify-status.read {
+  background-color: #66bb6a;
+}
+
+/* 通知內容 */
+.notify-message {
+  margin: 8px 0 12px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 通知連結 */
+.notify-link {
+  color: #1e67e5;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.notify-link:hover {
+  color: #0d47a1;
+}
+
+/* 日期與其他資訊 */
+.notify-meta {
+  text-align: right;
+  color: #777;
+  font-size: 13px;
+}
+
+.no-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+:host ::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
+  border: 1.5px solid #8eb69b;
+}
+.custom-tab-group {
+  /* 選中底線顏色（active 狀態） */
+  --mdc-tab-indicator-color: #8eb69b !important;
+
+  /* 選中文字顏色 */
+  --mdc-tab-color: #8eb69b;
+
+  /* 未選中文字顏色 */
+  --mdc-tab-color-secondary: #777;
+
+  /* 點擊 ripple 顏色 */
+  --mdc-ripple-color: #8eb69b;
+}
+
+:host
+  ::ng-deep
+  .mat-mdc-tab.mdc-tab--active:hover
+  .mdc-tab-indicator__content--underline {
+  border-color: #8eb69b !important;
+}
+:host
+  :ng-deep
+  .mat-mdc-tab.mdc-tab--active:focus
+  .mdc-tab-indicator__content--underline {
+  border: 0 !important;
+}
+.custom-tab-group {
+  --mat-tab-header-active-focus-indicator-color: #8eb69b;
+  --mat-sys-primary: #8eb69b;
+}
+
+// .backToTop {
+//   position: fixed;
+//   bottom: 16px;
+//   right: 16px;
+//   border-radius: 1000px;
+//   border: 0;
+//   display: inline-block;
+//   width: 40px;
+//   height: 40px;
+//   opacity: 0.7;
+//   cursor: pointer;
+//   transition: transform 0.3s ease;
+//   z-index: 99;
+//   &:hover {
+//     transform: scale(1.2);
+//   }
+// }

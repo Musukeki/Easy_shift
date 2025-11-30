@@ -1,0 +1,172 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+/* === Header 樣式 === */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.nav-icon {
+  font-size: 28px;
+  color: #3f51b5;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.nav-icon:hover {
+  color: #283593;
+  transform: scale(1.2);
+}
+
+.month-label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+/* === Table 容器 === */
+.leave-table-container {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* === Table 樣式 === */
+.leave-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leave-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #ddd !important;
+}
+
+.leave-table td {
+  text-align: center;
+  padding: 12px;
+}
+
+.leave-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.leave-table tr:hover {
+  background-color: #e8eaf6;
+}
+
+/* === 查看按鈕 === */
+.applyDateBtn {
+  color: #3f51b5;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.applyDateBtn:hover {
+  color: #283593;
+}
+
+/* === 同意 / 不同意 標籤 === */
+.approved-label,
+.denied-label {
+  display: inline-block;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* 同意 */
+.approved-label {
+  background-color: #6ea77c; /* 綠色 */
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+/* 不同意 */
+.denied-label {
+  background-color: #dd6565; /* 紅色 */
+  box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+}
+.table-container {
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  th {
+    border-bottom: 1px solid #ddd !important;
+  }
+}
+.mat-mdc-paginator {
+  background-color: #8eb69bc6 !important;
+}
+
+.toolbar {
+  max-width: 280px;
+  margin: 0 auto;
+}
+.toolbar-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toolbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.toolbar-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-icon {
+  font-size: 26px;
+  color: #2f3e46 !important;
+  cursor: #9a5370;
+  display: inline-grid;
+  place-items: center;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+  border: 2px solid #fff;
+
+  background-color: #7eb1a2c4;
+
+  box-shadow: 5px 5px 10px rgba(110, 110, 110, 0.295);
+}
+.nav-icon:hover {
+  transform: translateY(-3px);
+  background: rgba(232, 180, 200, 0.12);
+  color: #9a5370;
+  transition: 0.3s;
+}
+.month-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--indigo);
+  margin: 0 12px;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #8eb69b;
+  color: #fff;
+  border: 1px solid rgba(47, 62, 70, 0.03);
+  box-shadow: 0 6px 14px rgba(47, 62, 70, 0.02);
+}

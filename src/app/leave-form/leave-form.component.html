@@ -1,0 +1,169 @@
+<div class="leave-wrapper">
+  <div class="form-container">
+    <!-- 頂部列：中間標題、右邊按鈕 -->
+    <div class="topbar">
+      <h1>員工請假申請</h1>
+      <button class="btn btn-submit" (click)="goToViewer()">查看我的申請</button>
+    </div>
+
+    <!-- 上方四欄 -->
+    <div class="row-1">
+      <div class="input-group">
+        <h3>假別</h3>
+        <select class="form-control" [(ngModel)]="leave.leaveType">
+          <option value="">請選擇假別</option>
+          <option value="事假">事假</option>
+          <option value="婚假">婚假</option>
+          <option value="病假">病假</option>
+          <option value="產假">產假</option>
+          <option value="生理假">生理假</option>
+          <option value="公假">公假</option>
+          <option value="特休">特休</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <h3>請假事由</h3>
+        <input class="form-control" [(ngModel)]="leave.leaveDescription" placeholder="請輸入請假事由" />
+      </div>
+
+      <div class="input-group">
+        <h3>請假時數</h3>
+        <input disabled type="number" class="form-control" [(ngModel)]="leave.totalHours" />
+      </div>
+
+      <div class="input-group">
+        <h3>是否請整天</h3>
+        <select class="form-control" [(ngModel)]="leave.isWholeDay" (change)="onDayTypeChange()">
+          <option value="">請選擇</option>
+          <option value="整天">整天</option>
+          <option value="非整天">非整天</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="shift-badges">
+      <!-- [ngClass]是 Angular 的內建指令，可以把後面的""字串裝到這個class上 -->
+      @for (b of SHIFT_TIMETABLE; track b.name) {
+      <div class="shift-badge">
+        <!-- span 行內元素，可以併排-->
+        <span class="shift-dot" [ngClass]="b.dotClass"></span>
+        {{ b.name }} {{ b.time }}
+      </div>
+      }
+    </div>
+
+
+    <!-- 上傳請假證明 -->
+    <div class="upload-section">
+      <h3>上傳請假證明</h3>
+      <div class="upload-box">
+        <label class="upload-label">
+
+          @if (previewUrl) {
+          <div class="preview-in-box">
+            <!-- 只要檔案有被轉成base64那麼<img>就可以把 src 屬性更新成同樣的值 -->
+            <!-- $event.preventDefault()事件綁定裡阻止預設行為，避免又開檔案挑選器。 -->
+            <img [src]="previewUrl" alt="預覽圖片" />
+            <button type="button" class="btn-remove-inbox" (click)="removeFile(); $event.preventDefault()">
+              ×
+            </button>
+          </div>
+          } @else {
+          <img class="folder-icon" src="upload.png" alt="上傳圖示">
+          <span class="upload-text">點擊上傳檔案</span>
+          }
+          <!-- 用了這個style="display: none;"把這個input 隱藏起來，不佔版面、不可見。因為包在label所以整個版面都能選 -->
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+        </label>
+      </div>
+    </div>
+
+
+    <!-- 請假區段 -->
+    <div class="period-section">
+      @if (leave.isWholeDay) {
+
+      <!-- 整天 -->
+      @if (leave.isWholeDay === '整天') {
+      <div class="section-header">
+        <h3>請假日期與班別</h3>
+        <button class="btn btn-add" type="button" (click)="addWholeDay()">
+          <mat-icon class="btn-add-icon">add</mat-icon>
+          <span>新增天數</span>
+        </button>
+      </div>
+
+      <div class="period-header">
+        <label>請假日期</label>
+        <label>第一班別</label>
+        <label>第二班別</label>
+        <div></div>
+      </div>
+
+      @for (day of wholeDays; track day.leaveDate; let i = $index) {
+      <div class="period-box">
+        <div class="time-segment-row">
+          <input type="date" class="form-control" [(ngModel)]="day.leaveDate" (change)="onDateSelected(day)" />
+          <input type="text" class="form-control" [value]="day.shift1 || '自動帶入中...'" readonly />
+          <input type="text" class="form-control" [value]="day.shift2 || '自動帶入中...'" readonly />
+          <button class="btn btn-danger" (click)="deleteWholeDay(i)">刪除</button>
+        </div>
+      </div>
+      }
+      } @else if (leave.isWholeDay === '非整天') {
+
+      <!-- 非整天 -->
+      <div class="section-header">
+        <h3>請假時間段</h3>
+        <button class="btn btn-add" type="button" (click)="addPeriod()">
+          <mat-icon class="btn-add-icon">add</mat-icon>
+          <span>新增時間段</span>
+        </button>
+        
+      </div>
+
+      <div class="period-header period-header--with-shift">
+        <label>請假日期</label>
+        <label>當日班別</label>
+        <label>開始時間</label>
+        <label>結束時間</label>
+        <div></div>
+      </div>
+
+      @for (item of period; track item.leave; let i = $index) {
+      <div class="period-box">
+        <div class="time-segment-row time-segment-row--with-shift">
+          <input type="date" class="form-control" [(ngModel)]="item.leave" (change)="onPartialDateSelected(item)" />
+
+          <input type="text" class="form-control" [value]="item.dayShift || '（選擇日期後自動帶入）'" readonly />
+
+          <select class="form-control" [(ngModel)]="item.startTime" (change)="updateTotalHours()">
+            <option value="">選擇時間</option>
+            @for (hour of hourOptions; track hour) {
+            <option [value]="hour">{{ hour }}</option>
+            }
+          </select>
+
+          <select class="form-control" [(ngModel)]="item.endTime" (change)="updateTotalHours()">
+            <option value="">選擇時間</option>
+            @for (hour of hourOptions; track hour) {
+            <option [value]="hour">{{ hour }}</option>
+            }
+          </select>
+
+          <button class="btn btn-danger" (click)="deletePeriod(i)">刪除</button>
+        </div>
+      </div>
+      }
+      }
+      }
+    </div>
+
+    <!-- 送出按鈕 -->
+    <div class="submit-row">
+      <button class="btn btn-cancel" (click)="sendJSON1()">取消申請</button>
+      <button class="btn btn-submit" (click)="sendJSON()">送出申請</button>
+    </div>
+  </div>
+</div>

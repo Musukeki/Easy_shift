@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <h2 class="dialog-title">新增通知</h2>
+
+  <form class="notification-form">
+    <!-- 通知 -->
+    <div class="form-group">
+      <label for="employee">選擇員工</label>
+      <select
+        id="employee"
+        name="employee"
+        [(ngModel)]="employeeNotify.employeeId"
+      >
+        @for (item of employeeList; track $index) {
+        <option [value]="item.id">{{ item.id }} - {{ item.name }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- 通知標題 -->
+    <div class="form-group">
+      <label for="title">通知標題</label>
+      <input
+        id="title"
+        name="Title"
+        rows="3"
+        class="form-control"
+        placeholder="請輸入通知標題"
+        [(ngModel)]="employeeNotify.title"
+      />
+    </div>
+
+    <!-- 通知內容 -->
+    <div class="form-group">
+      <label for="message">通知內容</label>
+      <textarea
+        id="message"
+        name="Message"
+        rows="5"
+        class="form-control"
+        style="height: 100px; resize: none"
+        placeholder="請輸入通知內容"
+        [(ngModel)]="employeeNotify.message"
+      >
+      </textarea>
+    </div>
+
+    <!-- 連結 -->
+    <div class="form-group">
+      <label for="url">連結</label>
+      <input
+        type="text"
+        id="url"
+        name="url"
+        class="form-control"
+        placeholder="https://..."
+        [(ngModel)]="employeeNotify.linkUrl"
+      />
+    </div>
+
+    <!-- 日期 -->
+    <div class="form-group">
+      <label for="Date">開始日期</label>
+      <input
+        type="date"
+        id="Date"
+        name="Date"
+        class="form-control"
+        [(ngModel)]="employeeNotify.createdDate"
+        [min]="today"
+      />
+    </div>
+
+    <!-- 按鈕 -->
+    <div class="button-group">
+      <button
+        type="button"
+        class="btn btn-primary submit"
+        (click)="addEmployeeNotify()"
+      >
+        發布
+      </button>
+      <button type="button" class="btn btn-cancel" (click)="OnCancel()">
+        取消
+      </button>
+    </div>
+  </form>
+</div>

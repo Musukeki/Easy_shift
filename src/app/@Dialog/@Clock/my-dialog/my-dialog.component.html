@@ -1,0 +1,137 @@
+<div class="my-dialog-overlay" [class.open]="isOpen" (click)="close()">
+  <div
+    #dialogEl
+    class="dialog"
+    (click)="$event.stopPropagation()"
+    [style.width.px]="dialogWidth"
+    [style.height.px]="dialogHeight"
+    [style.left.px]="dialogLeft"
+    [style.top.px]="dialogTop"
+  >
+    <div class="header" (pointerdown)="onPointerDown($event)">
+      <h3 class="title">{{ title }}</h3>
+      <div class="header-btn">
+        <span class="lessenBtn btnBase" (click)="shrink($event)"> _ </span>
+        <span
+          class="enlargeBtn btnBase"
+          (click)="enlarge($event)"
+          [attr.aria-pressed]="isEnlarged"
+        >
+          <img src="square-btn.png" />
+        </span>
+        <span class="closeBtn btnBase" (click)="close()">
+          <img src="close-btn.png" />
+        </span>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="content">
+        @if (missList.length == 0) {
+        <p style="text-align: center">無申請資料</p>
+
+        } @else {
+        <!--  -->
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>職員編號</th>
+                <th>姓名</th>
+                <th>日期</th>
+                <th>詳細內容</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(item of missList; track $index) {
+
+              <tr>
+                <td>{{ item.employeeId }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.workDate }}</td>
+                <td>
+                  <span
+                    id="{{ item.id }}"
+                    [attr.data-name]="item.name"
+                    class="link"
+                    (click)="getPersonal($event)"
+                    >查看</span
+                  >
+                </td>
+              </tr>
+
+              }
+            </tbody>
+          </table>
+        </div>
+        }
+
+        <div class="miss-info">
+          <ul class="info-detail">
+            @if(reClockBody != undefined) {
+
+            <li>
+              職員資訊：{{ reClockBody.name }} ({{ reClockBody.employeeId }})
+            </li>
+            <li>上班日期：{{ reClockBody.workDate }}</li>
+            <li>
+              出勤時段：{{ reClockBody.clockOn }} ~ {{ reClockBody.clockOff }}
+            </li>
+            @if(reClockBody.restStart !== null && reClockBody.restEnd !== null)
+            {
+            <li>
+              休息時段：{{ reClockBody.restStart }} ~ {{ reClockBody.restEnd }}
+            </li>
+            }
+
+            <li>工作時數：{{ reClockBody.totalHour }} 小時</li>
+            <li>未打卡原因：{{ reClockBody.description }}</li>
+            @if(reClockBody.prove !== 'data:image/png;base64,null') {
+
+            <li>
+              證明文件：
+              <!--  -->
+              @if(errorImgText != '圖片格式錯誤') {
+              <span class="show" (click)="showProveImg()">{{ showText }}</span>
+              }
+              <img
+                id="proveImg"
+                [style.display]="imgVisible ? 'inline-block' : 'none'"
+                width="100%"
+                [src]="proveImgSrc"
+                alt=""
+                (error)="onImgError()"
+              />{{ errorImgText }}
+            </li>
+            } @else {
+            <li>證明文件：未提供</li>
+            }
+            <!--  -->
+            } @else { @if(missList.length > 0) {
+
+            <li>請選擇申請資料查看詳細內容</li>
+            }
+            <!--  -->
+            }
+          </ul>
+          @if(reClockBody != undefined) {
+
+          <div class="btnGroup">
+            <button (click)="agree()">同意</button>
+            <button (click)="disagree()">不同意</button>
+          </div>
+          }
+        </div>
+      </div>
+
+      <!--  -->
+      <div class="footer-info">
+        @if(missList.length > 0) {
+        <p>尚有 {{ missList.length }} 筆待處理申請</p>
+        } @else {
+        <p>目前沒有待處理申請</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

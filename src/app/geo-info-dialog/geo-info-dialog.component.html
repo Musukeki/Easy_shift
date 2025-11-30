@@ -1,0 +1,25 @@
+<div class="dialog-container">
+  <h2 class="dialog-title">
+    定位資訊
+  </h2>
+
+  <div class="dialog-content">
+    <div class="info-field">
+      <label>定位公司</label>
+      <div class="value company-name">万十科技股份有限公司</div>
+    </div>
+
+    <div class="info-field highlight">
+      <label>距離公司</label>
+      <div class="value">
+        {{ data.distM | number:'1.0-0' }}<span class="unit"> 公尺</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <button class="btn-confirm" (click)="onConfirm()">
+      確定
+    </button>
+  </div>
+</div>

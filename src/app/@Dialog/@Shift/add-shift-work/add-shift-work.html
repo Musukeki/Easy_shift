@@ -1,0 +1,82 @@
+<h2 class="page-title">新增排班</h2>
+
+<div class="form-card">
+  <!-- 基本輸入區 -->
+  <div class="form-grid">
+    <div class="form-group">
+      <label>員工</label>
+      <select [(ngModel)]="update.employeeId" name="employee" required>
+        @for(item of employeeList; track $index) {
+        <option [value]="item.id">{{ item.id }} - {{ item.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>日期</label>
+      <input
+        type="date"
+        [(ngModel)]="update.applyDate"
+        name="date"
+        [min]="tomorrow"
+        [disabled]="!update.employeeId"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>時段</label>
+      <select
+        [(ngModel)]="update.shiftWorkId"
+        name="time"
+        required
+        (change)="validShift()"
+        [disabled]="!update.employeeId || !update.applyDate"
+      >
+        @for(item of timeList; track $index) {
+        <option [value]="$index + 1">{{ item }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <!-- 預覽表格 -->
+  <div class="preview-list">
+    <h3>已新增班表</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>員工 ID</th>
+            <th>日期</th>
+            <th>班別</th>
+            <th>刪除</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of shiftList.preSchduleUpdateVo; track $index) {
+          <tr>
+            <td>{{ item.employeeId }}</td>
+            <td>{{ item.applyDate }}</td>
+            <td>{{ item.shiftWorkId }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn-circle"
+                (click)="removeShift($index)"
+              >
+                −
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 底部提交 -->
+  <div class="form-actions bottom">
+    <button class="btn btn-primary" (click)="addShift()">送出</button>
+    <button class="btn btn-cancel" (click)="Oncancel()">取消</button>
+  </div>
+</div>

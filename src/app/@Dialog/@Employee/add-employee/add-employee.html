@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>新增員工</h2>
+
+<mat-dialog-content class="form-container">
+
+  <form class="form-body">
+
+    <!-- ID -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>員工 ID</mat-label>
+      <input matInput placeholder="請輸入 ID" [(ngModel)]="addEmployeeList.id" (ngModelChange)="checkIdDuplicate($event)" name="id">
+      @if(isIdDuplicate){
+        <label class="error-label">員工ID已存在</label>
+      }
+    </mat-form-field>
+
+    <!-- 姓名 -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>姓名</mat-label>
+      <input matInput placeholder="請輸入姓名" [(ngModel)]="addEmployeeList.name" name="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>部門</mat-label>
+      <mat-select [(ngModel)]="addEmployeeList.department" name="department">
+        <mat-option value="万十店">万十店</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- 職位 -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>職位</mat-label>
+      <mat-select [(ngModel)]="addEmployeeList.title" name="state">
+        <mat-option value="主管">主管</mat-option>
+        <mat-option value="正職人員">正職人員</mat-option>
+        <mat-option value="計時人員">計時人員</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- 電話 -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>電話</mat-label>
+      <input matInput placeholder="請輸入電話" [(ngModel)]="addEmployeeList.phone" (ngModelChange)="checkPhoneDuplicate($event)" name="phone" >
+      @if(isPhoneDuplicate){
+        <label class="error-label">員工手機已存在</label>
+      }
+    </mat-form-field>
+
+    <!-- EMAIL -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="請輸入 Email" [(ngModel)]="addEmployeeList.email" (ngModelChange)="checkEmailDuplicate($event)" name="email">
+      @if(isEmailDuplicate){
+        <label class="error-label">員工信箱已存在</label>
+      }
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" class="custom-button add-btn" (click)="addEmployee()">新增</button>
+  <button mat-stroked-button class="custom-button cancel-btn" (click)="onCancel()">取消</button>
+</mat-dialog-actions>

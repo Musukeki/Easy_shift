@@ -1,0 +1,172 @@
+/* 📦 整體容器，垂直排列 Header 和 Main 區塊 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column; // 垂直排列
+  height: 100vh; // 滿版高度
+  font-family: "Noto Sans TC", sans-serif; // 台灣常用字體
+}
+
+/* 🧩 頁首內的每個功能項（訊息 / 店名 / 登出） */
+.header-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; // icon 與文字間距
+  font-size: 14px;
+  cursor: pointer; // 滑鼠變手型
+}
+
+/* 🧱 主內容區容器（Sidebar + Content） */
+.main-container {
+  display: flex;
+  flex: 1; // 填滿剩餘空間
+  overflow: hidden; // 防止溢出
+}
+
+.sidebar {
+  width: 30px;
+  // background-color: #0c0314;
+  background-color: #051f20;
+  color: white;
+  // overflow: hidden;
+  position: relative;
+  border-radius: 0 10px 10px 0;
+  transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+  padding: 20px 0;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  transition: 0.3s !important;
+}
+
+.sidebarOpen {
+  width: 220px;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-item-list {
+  overflow: hidden;
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 15px 15px 25px;
+    cursor: pointer;
+    transform: translateX(-30px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+      opacity 0.4s ease;
+    transition: 0.3s;
+    color: #b8b8b8;
+
+    &:hover {
+      transition: 0.3s;
+      background-color: #ffffff20;
+      label {
+        color: #fff;
+        transition: 0.3s;
+        transform: translate(8px, 0);
+      }
+    }
+    label {
+      cursor: pointer;
+      padding: 0;
+      transition: 0.3s;
+    }
+  }
+}
+
+.sidebarOpen .sidebar-item {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sidebar-item mat-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.sidebar-item:hover mat-icon {
+  transform: scale(1.3);
+  color: #8eb69b;
+}
+
+.sidebar-item label {
+  white-space: nowrap;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.sidebarOpen .sidebar-item label {
+  opacity: 1;
+}
+
+/* sidebar 中間箭頭 */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%; /* 垂直置中 */
+  right: -12px; /* 讓箭頭貼在 sidebar 邊緣 */
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #235347;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.sidebar-toggle:hover {
+  background-color: #3d566e;
+}
+
+.sidebar-toggle mat-icon {
+  color: #daf1de;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-toggle mat-icon.rotated {
+  transform: rotate(180deg); /* 收合時旋轉 */
+}
+
+/* 📄 主內容區塊（右側內容區） */
+.content {
+  flex: 1; // 填滿剩餘寬度
+  padding: 32px 32px 32px 64px; // 內距
+  overflow-y: auto; // 可垂直滾動
+  background-color: #ebf1da7a;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* 🔳 遮罩：預設透明且不可點擊，開啟時淡入並可點擊 */
+.backdrop {
+  position: fixed;
+  inset: 0; // top:0; right:0; bottom:0; left:0 的縮寫
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 40; // 低於 .sidebar(50)，高於 .content(1)
+}
+
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto; // 讓點擊能觸發關閉
+}

@@ -1,0 +1,61 @@
+<div class="opinion-page-container">
+  @if (isLoading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+    </div>
+  } @else {
+    <div class="content-layout">
+
+      <!-- 左側：員工意見列表 -->
+      <section class="opinion-section">
+        <h2 class="section-title">員工意見列表</h2>
+        <div class="opinion-list">
+          @for (item of opinionList; track $index) {
+            <div
+              class="opinion-card"
+              (click)="item.expanded = !item.expanded"
+              [class.expanded]="item.expanded"
+            >
+              <div class="opinion-header">
+                <h3 class="opinion-title">{{ item.title }}</h3>
+                <p class="opinion-date">創建日期：{{ item.createdDate }}</p>
+              </div>
+
+              <!-- 展開後才顯示 -->
+              @if(item.expanded) {
+                <div class="opinion-body">
+                  <p class="opinion-message">{{ item.message }}</p>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- 右側：離職風險率與建議 -->
+      <aside class="analyze-section">
+        <h2 class="section-title">職員狀況總體評估</h2>
+        <div class="analyze-list">
+          @for (item of analyze; track $index) {
+            <div class="analyze-item"
+              [class.high-risk]="item.includes('高')"
+              [class.medium-risk]="item.includes('中')"
+              [class.low-risk]="item.includes('低')">
+
+              @if(item.includes('高')) {
+                <span class="icon">⚠️</span>
+              } @else if(item.includes('中')) {
+                <span class="icon">ℹ️</span>
+              } @else if(item.includes('低')) {
+                <span class="icon">✅</span>
+              }
+
+              <span class="analyze-text">{{ item }}</span>
+            </div>
+          }
+        </div>
+      </aside>
+
+    </div>
+  }
+</div>

@@ -1,0 +1,130 @@
+<mat-dialog-content class="employee-dialog">
+
+  <div class="employee-card">
+
+    <div class="header-row">
+      <h3 class="section-title">職員基本資料</h3>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-wrapper-top">
+        <!-- 姓名 -->
+        <div class="info-item">
+          @if (isEditMode) {
+            <div class="fl-group">
+              <input id="emp-name" type="text" placeholder=" " [(ngModel)]="updateEmployeeList.name">
+              <label for="emp-name">姓名</label>
+            </div>
+          } @else {
+            <div class="info-readonly">
+              <span class="info-readonly-label">姓名</span>
+              <span class="info-readonly-value">{{ updateEmployeeList.name }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- 任職狀態 -->
+        @if (isEditMode) {
+          <div class="info-item">
+            <div class="fl-group">
+              <select  class="fl-group-select" id="emp-state" [(ngModel)]="updateEmployeeList.employmentStatus">
+                <option value="在職中">在職中</option>
+                <option value="已離職">已離職</option>
+              </select>
+              <label for="emp-state" class="fl-group-label">任職狀態</label>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- 電話 -->
+      <div class="info-item">
+        @if (isEditMode) {
+          @if(isPhoneDuplicate){
+              <label class="error-label">員工手機已存在</label>
+          }
+          <div class="fl-group">
+            <input id="emp-phone" type="tel" placeholder=" " [(ngModel)]="updateEmployeeList.phone" (ngModelChange)="checkPhoneDuplicate($event)">
+            <label for="emp-phone">電話</label>
+          </div>
+        } @else {
+          <div class="info-readonly">
+            <span class="info-readonly-label">電話</span>
+            <span class="info-readonly-value">{{ updateEmployeeList.phone }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="info-item">
+        @if (isEditMode) {
+          @if(isEmailDuplicate){
+            <label class="error-label">員工信箱已存在</label>
+          }
+          <div class="fl-group">
+            <input id="emp-email" type="email" placeholder=" " [(ngModel)]="updateEmployeeList.email" (ngModelChange)="checkEmailDuplicate($event)">
+            <label for="emp-email">Email</label>
+          </div>
+        } @else {
+          <div class="info-readonly">
+            <span class="info-readonly-label">Email</span>
+            <span class="info-readonly-value">{{ updateEmployeeList.email }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- 部門 -->
+      @if (isEditMode) {
+        <div class="info-item">
+            <div class="fl-group">
+              <select id="emp-department" class="fl-group-select" [(ngModel)]="updateEmployeeList.department">
+                <option value="万十店">万十店</option>
+              </select>
+              <label class="fl-group-label" for="emp-department">部門</label>
+            </div>
+        </div>
+      }
+
+      <!-- 職位 -->
+      <div class="info-item">
+        @if (isEditMode) {
+          <div class="fl-group">
+            <mat-select id="emp-title" class="fl-group-select" [(ngModel)]="updateEmployeeList.title">
+              <mat-option value="主管">主管</mat-option>
+              <mat-option value="正職人員">正職人員</mat-option>
+              <mat-option value="計時人員">計時人員</mat-option>
+            </mat-select>
+            <label class="fl-group-label" for="emp-title">職位</label>
+          </div>
+        } @else {
+          <div class="info-readonly">
+            <span class="info-readonly-label">職位</span>
+            <span class="info-readonly-value">{{ updateEmployeeList.title }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- 密碼 -->
+      @if (isEditMode) {
+        <div class="info-item" style="margin-top: 18px;">
+            <div class="fl-group">
+              <input id="emp-password" [(ngModel)]="updateEmployeeList.password">
+              <label for="emp-password">密碼</label>
+            </div>
+        </div>
+      }
+
+    @if (!isEditMode) {
+      <div class="form-footer">
+        <button class="edit-btn" (click)="isEditMode = true">編輯</button>
+      </div>
+    } @else {
+      <div class="form-footer">
+        <button class="confirm-btn" (click)="updateEmployeeInfo()">確定更新</button>
+        <button class="cancel-btn" (click)="onCancel()">取消</button>
+      </div>
+    }
+
+  </div>
+</mat-dialog-content>

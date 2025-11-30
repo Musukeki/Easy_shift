@@ -1,0 +1,136 @@
+<div class="page-container">
+  <div class="page-header">
+    <h2>出勤紀錄管理</h2>
+    <!-- <button mat-raised-button color="primary" (click)="punchInLate()">
+      補打卡
+    </button> -->
+    @if(missList.length > 0) {
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="showDialog = true"
+      matButton="elevated"
+      matBadge="{{missList.length}}"
+      [matBadgeHidden]="hidden"
+    >
+      補打卡申請
+    </button>
+    } @else {
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="showDialog = true"
+      matButton="elevated"
+    >
+      補打卡申請
+    </button>
+    }
+  </div>
+
+  <div class="filter-section">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>搜尋姓名 / Email / 電話</mat-label>
+      <input
+        matInput
+        (keyup)="searchData()"
+        [(ngModel)]="searchText"
+        placeholder="輸入關鍵字"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="status-select">
+      <mat-label>任職狀態</mat-label>
+      <mat-select (selectionChange)="onStateChange()" [(ngModel)]="searchState">
+        <mat-option value="">全部</mat-option>
+        <mat-option value="在職中">在職中</mat-option>
+        <mat-option value="離職">離職</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="status-select">
+      <mat-label>職位</mat-label>
+      <mat-select (selectionChange)="onStateChange()" [(ngModel)]="searchTitle">
+        <mat-option value="">全部</mat-option>
+        <mat-option value="技術總監">技術總監</mat-option>
+        <mat-option value="策畫經理"> 策畫經理</mat-option>
+        <mat-option value="副社長"> 副社長</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div
+    class="table-wrapper"
+    [style.zIndex]="(hidden || showDialog) ? -1 : null"
+  >
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>員工編號</th>
+          <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>員工姓名</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>任職狀態</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.employmentStatus}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="department">
+          <th mat-header-cell *matHeaderCellDef>部門</th>
+          <td mat-cell *matCellDef="let element">{{element.department}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>職位</th>
+          <td mat-cell *matCellDef="let element">{{element.title}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="clock">
+          <th mat-header-cell *matHeaderCellDef>打卡紀錄</th>
+          <td mat-cell *matCellDef="let element">
+            <label class="clickable-text" (click)="showTimeRecord(element.id)"
+              >查看</label
+            >
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[10, 15, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
+<!-- <app-my-dialog
+  [isOpen]="showDialog"
+  title="自定義 Dialog"
+  (closed)="showDialog = false"
+>
+  <p>內容</p>
+</app-my-dialog> -->
+
+@if(showDialog) {
+<app-my-dialog
+  [isOpen]="showDialog"
+  title="補打卡申請列表"
+  (closed)="closeDialog()"
+  @fadeAnimation
+  (approved)="onApproved($event)"
+>
+  <!-- <p>內容</p> -->
+</app-my-dialog>
+}

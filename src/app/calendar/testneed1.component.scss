@@ -1,0 +1,176 @@
+.calendar-container {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: transparent;
+}
+
+.calendar-title {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calendar-wrapper {
+  display: inline-block;
+  margin: 0;
+  transform-origin: top left;
+}
+
+.calendar-card {
+  position: relative;
+  width: 250px;
+  border-radius: 1em;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.calendar-day {
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  vertical-align: middle;
+  cursor: not-allowed;
+  color: #cacaca;
+  background: transparent;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* 當前月份可點擊 */
+.calendar-day.current-month {
+  color: #000;
+  cursor: pointer;
+}
+
+/* 單日選取 */
+.calendar-day.selected-single {
+  background-color: #4299e1; // 藍色
+  color: #fff;
+}
+
+/* hover 效果 */
+.calendar-day.current-month:hover:not(.selected-single) {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 50%;
+}
+
+.calendar-header {
+  background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGw1dnRrYzNwYzE5dWE1cjNrMDR4cDJ3ZHJ1NWlkNng1czhkYjMwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ovWn8N8TVg8hi/giphy.gif');
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ff8484;
+}
+
+.nav-button {
+  background: rgb(92 62 62 / 30%);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  flex-shrink: 0;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.month-year-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.month-name {
+  font-size: 2em;
+  font-weight: 500;
+  font-family: Montserrat, sans-serif;
+  line-height: 1;
+}
+
+.year-name {
+  font-size: 1.2em;
+  font-weight: 500;
+  font-family: Montserrat, sans-serif;
+  opacity: 0.9;
+}
+
+.time-inputs {
+  background: #fff;
+  padding: 15px 20px;
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.input-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.75em;
+  color: #666;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 2px solid #e66b6b;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #333;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.calendar-table {
+  width: 100%;
+  background: #fff;
+  color: #000000;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.weekday-header {
+  padding: 10px 2px;
+  text-align: center;
+  font-size: 11px;
+  color: #e66b6b;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* 移除所有原本的範圍選取樣式 */
+.calendar-day.in-range,
+.calendar-day.range-single,
+.calendar-day.range-start,
+.calendar-day.range-end,
+.calendar-day.range-middle {
+  background: transparent !important;
+  color: inherit !important;
+  border-radius: 0 !important;
+}

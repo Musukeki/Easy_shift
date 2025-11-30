@@ -1,0 +1,360 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+:host ::ng-deep p {
+  margin: 0 !important;
+}
+
+:host ::ng-deep .my-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background 0.3s ease !important;
+  z-index: 99999 !important;
+
+  &.open {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+  }
+
+  .dialog {
+    background: #245dda;
+    // background: #3B77BC;
+    // width: 600px;
+    // height: 450px;
+    // border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    transform: scale(0.95);
+    // transition: transform 0.3s ease !important;
+
+    transition: width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    z-index: 100000 !important;
+
+    border: 2px solid #144cc4;
+
+    // padding: 4px;
+
+    display: flex;
+    flex-direction: column;
+
+    .my-dialog-overlay.open & {
+      transform: scale(1);
+    }
+
+    .wrapper {
+      margin-top: 4px;
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-bottom: 2px;
+      // padding: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      height: calc(100% - 60.5px);
+      background-color: #efebdf;
+      // background-color: #000;
+      // border-radius: 3px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+
+      // color: #ffffffa3 !important;
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .table-wrapper {
+        flex: 1;
+
+        overflow-y: auto;
+
+        // scroll
+        /* 垂直捲軸寬度 */
+        &::-webkit-scrollbar {
+          width: 20px;
+          padding: 0 2px !important;
+        }
+
+        /* 捲軸軌道 */
+        &::-webkit-scrollbar-track {
+          background: #f0f0f0;
+          border-radius: 2px;
+
+          padding: 0 4px !important;
+          border: 1px solid #ddd;
+        }
+
+        /* 滑塊 */
+        &::-webkit-scrollbar-thumb {
+          // background: #7996da;
+          background: linear-gradient(to right, #bdc9e7, #94a9da);
+          border-radius: 3px;
+          cursor: pointer;
+
+          border: 2px solid #fff;
+          box-shadow: 1px 1px 1px #00000080;
+        }
+
+        /* 滑塊 hover */
+        &::-webkit-scrollbar-thumb:hover {
+          // background: #555;
+          background: linear-gradient(to right, #aebee3, #7996da);
+        }
+      }
+      .miss-info {
+        position: relative;
+        border-top: 1px solid #ddd;
+        flex: 1.13;
+
+        overflow-y: auto;
+        background: #ffffffbb;
+
+        // padding: 8px;
+
+        .info-detail {
+          margin: 0;
+          padding: 6px;
+          list-style: none;
+
+          white-space: normal; /* 允許換行 */
+          overflow-wrap: anywhere;
+          color: #222;
+        }
+
+        // scroll
+        /* 垂直捲軸寬度 */
+        &::-webkit-scrollbar {
+          width: 20px;
+          padding: 0 2px !important;
+        }
+
+        /* 捲軸軌道 */
+        &::-webkit-scrollbar-track {
+          background: #f0f0f0;
+          border-radius: 2px;
+
+          padding: 0 4px !important;
+          border: 1px solid #ddd;
+        }
+
+        /* 滑塊 */
+        &::-webkit-scrollbar-thumb {
+          // background: #7996da;
+          background: linear-gradient(to right, #bdc9e7, #94a9da);
+          border-radius: 3px;
+          cursor: pointer;
+
+          border: 2px solid #fff;
+          box-shadow: 1px 1px 1px #00000080;
+        }
+
+        /* 滑塊 hover */
+        &::-webkit-scrollbar-thumb:hover {
+          // background: #555;
+          background: linear-gradient(to right, #aebee3, #7996da);
+        }
+
+        .btnGroup {
+          position: absolute;
+          right: 6px;
+          top: 6px;
+          button {
+            width: 80px;
+            padding: 1px 18px;
+            border: 0.5px solid #1f1f1f;
+            outline: 0.8px solid rgb(102, 138, 209);
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          button:last-of-type {
+            margin-left: 4px !important;
+          }
+        }
+      }
+
+      .footer-info {
+        position: absolute;
+        left: 3px;
+        bottom: 3px;
+        width: calc(100% - 6px);
+        text-align: right;
+        background-color: #efebdf;
+        border-top: 2px solid #ddd;
+        padding: 1px 3px;
+        font-size: 14px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // padding: 1px 2px 0 3px;
+      padding-left: 8px;
+      padding-right: 4px;
+      padding-bottom: 2px;
+      padding-top: 2px;
+      margin-left: -1.5px;
+      margin-right: -1.5px;
+      margin-bottom: -1.5px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+
+      // box-shadow: inset 0 1px 8px rgba(255, 255, 255, 0.5);
+
+      box-shadow: inset 0 -8px 8px -6px rgba(255, 255, 255, 0.2),
+        inset 0 8px 8px -6px rgba(255, 255, 255, 0.4),
+        inset -8px 0 8px -6px rgba(0, 0, 255, 0.9),
+        inset 8px 0 8px -6px rgba(0, 0, 255, 0.9);
+      .title {
+        font-size: 16px;
+        color: #fff;
+      }
+      &-btn {
+        display: flex;
+        img {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+        }
+        .btnBase {
+          width: 28px;
+          height: 28px;
+          border: 1.5px solid rgba(255, 255, 255, 0.6);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 4px;
+          margin-left: 2px;
+          padding: 1px;
+          cursor: pointer;
+          transition: 0.5s !important;
+        }
+        .closeBtn {
+          background: radial-gradient(#e9908d 10%, #d6351c);
+          &:hover {
+            background: radial-gradient(#e9908d 25%, #d6351c);
+          }
+        }
+        .enlargeBtn {
+          background: radial-gradient(rgb(71, 122, 232) 10%, #245dda);
+          &:hover {
+            background: radial-gradient(rgb(71, 122, 232) 45%, #245dda);
+          }
+        }
+        .lessenBtn {
+          color: #fff;
+          font-weight: 900;
+          background: radial-gradient(rgb(71, 122, 232) 10%, #245dda);
+          &:hover {
+            background: radial-gradient(rgb(71, 122, 232) 45%, #245dda);
+          }
+        }
+      }
+    }
+  }
+}
+
+.dialog {
+  position: fixed; /* 必要：left/top 才會生效 */
+  transition: width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.12s ease, top 0.12s ease;
+  touch-action: none; /* 在拖曳時避免瀏覽器滾動 */
+  user-select: none;
+  user-select: text;
+}
+.dialog * {
+  user-select: text;
+}
+
+/* 拖曳時取消 transition（更即時） */
+.dialog.dragging {
+  transition: none !important;
+  cursor: grabbing;
+}
+
+/* 建議 header 顯示可拖曳提示（可選） */
+.header {
+  cursor: grab;
+}
+
+.table {
+  width: 100%;
+  // margin: 40px auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  // height: 50%;
+
+  thead {
+    background-color: #efebdf;
+    height: 20px;
+    font-size: 16px;
+  }
+
+  th,
+  td {
+    // padding: 12px 16px;
+    border: 1px solid #ddd;
+    font-weight: normal !important;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+  }
+  tbody tr:hover {
+    background-color: rgba(40, 91, 193, 0.2);
+  }
+
+  tbody .link {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    display: inline-block;
+    z-index: 999 !important;
+  }
+
+  .link:hover {
+    color: rgb(147, 70, 154) !important;
+  }
+
+  tfoot {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    .total {
+      text-align: right;
+    }
+  }
+}
+.show {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+  display: inline-block;
+  &:hover {
+    color: rgb(147, 70, 154) !important;
+  }
+}

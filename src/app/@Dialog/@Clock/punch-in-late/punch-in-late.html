@@ -1,0 +1,140 @@
+<div class="clock-form" style="display: flex; flex-direction: column; justify-content: flex-start">
+  <h2>補打卡</h2>
+  <div class="wrapper">
+
+
+    <div class="form-row">
+      <label>員工編號：</label>
+      <select [(ngModel)]="clock.employeeId" (ngModelChange)="checkWorkOfDate()">
+        @for (item of employeeList; track $index) {
+        <option [value]="item.id">{{ item.id }} - {{ item.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>打卡日期：</label>
+      <input type="date" [(ngModel)]="clock.workDate" (ngModelChange)="checkRecData()" />
+    </div>
+
+    @if (clock.workDate == '') {
+
+    <span class="txt" style="display: block; text-align: center; color: rgb(89, 118, 198)">
+      請選擇職員編號與補打卡日期
+    </span>
+
+    } @else { @if (shiftWorkOfDate.length == 0) {
+
+    <span class="txt" style="text-align: center; color: rgb(85, 98, 210)"> 當日未排班 </span>
+
+    } @else { @if (standbyReClockList.length != 0) {
+    <p class="txt" style="font-size: 14px; margin-top: 0; text-align: center; color: rgb(201, 142, 61)">
+      當日尚未補打卡筆數：{{ checkForgotNum }}
+    </p>
+    <p class="txt" style="font-size: 14px; margin-top: 0; text-align: center; color: rgb(103, 168, 94)">
+      待補打卡內容
+    </p>
+
+    <div class="form-row">
+      <label>上班打卡：</label>
+      <input type="time" step="1" name="clockOn" disabled [(ngModel)]="clock.clockOn" />
+    </div>
+
+    <div class="form-row">
+      <label>下班打卡：</label>
+      <input type="time" step="1" [(ngModel)]="clock.clockOff" (ngModelChange)="checkClockOff()" />
+    </div>
+
+    @if (isContinue) {
+    <div class="form-row">
+      <label>休息開始：</label>
+      <input type="time" step="1" [(ngModel)]="clock.restStart" />
+    </div>
+    <div class="form-row">
+      <label>休息結束：</label>
+      <input type="time" step="1" [(ngModel)]="clock.restEnd" />
+    </div>
+    }
+
+    <div class="form-row">
+      <label>心情評分：</label>
+      <select [(ngModel)]="clock.score">
+        <option [value]="0">0</option>
+        <option [value]="1">1</option>
+        <option [value]="2">2</option>
+        <option [value]="3">3</option>
+        <option [value]="4">4</option>
+        <option [value]="5">5</option>
+      </select>
+    </div>
+
+    <div style="display: flex; justify-content: center">
+      <div class="form-actions" style="margin-right: 4px; margin-top: 0">
+        <button (click)="fixClock()">更新</button>
+      </div>
+    </div>
+
+    } @else if (isAllDayForgot) {
+
+    <p class="txt" style="margin-top: 0; text-align: center; color: rgb(201, 142, 61)">
+      當日尚未補打卡筆數：{{ checkForgotNum }}
+    </p>
+    <p class="txt" style="margin-top: 0; text-align: center; color: rgb(103, 168, 94)">
+      待補打卡內容
+    </p>
+
+    <div class="form-row">
+      <label>上班打卡：</label>
+      <input type="time" step="1" name="clockOn" [(ngModel)]="clock.clockOn" />
+    </div>
+
+    <div class="form-row">
+      <label>下班打卡：</label>
+      <input type="time" step="1" [(ngModel)]="clock.clockOff" (ngModelChange)="checkClockOff()" />
+    </div>
+
+    @if (isContinue) {
+    <div class="form-row">
+      <label>休息開始：</label>
+      <input type="time" step="1" [(ngModel)]="clock.restStart" />
+    </div>
+    <div class="form-row">
+      <label>休息結束：</label>
+      <input type="time" step="1" [(ngModel)]="clock.restEnd" />
+    </div>
+    }
+
+    <div class="form-row">
+      <label>心情評分：</label>
+      <select [(ngModel)]="clock.score" (ngModelChange)="showBody()">
+        <option [value]="0">0</option>
+        <option [value]="1">1</option>
+        <option [value]="2">2</option>
+        <option [value]="3">3</option>
+        <option [value]="4">4</option>
+        <option [value]="5">5</option>
+      </select>
+    </div>
+
+    @if (standbyReClockList.length > 0) {
+
+    <div style="display: flex; justify-content: center">
+      <div class="form-actions" style="margin-right: 4px; margin-top: 0">
+        <button (click)="fixClock()">更新資料</button>
+      </div>
+    </div>
+    } @else {
+    <div style="display: flex; justify-content: center">
+      <div class="form-actions" style="margin-right: 4px; margin-top: 0">
+        <button (click)="fixClock2()">更新資料</button>
+      </div>
+    </div>
+    } } @else {
+
+    <span style="text-align: center; color: rgb(192, 131, 131)">
+      查無不完整打卡紀錄
+    </span>
+
+    } } }
+  </div>
+</div>

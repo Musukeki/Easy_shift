@@ -1,0 +1,65 @@
+<div class="calendar-container">
+  <div class="calendar-wrapper">
+    <div class="calendar-card">
+      <!-- header -->
+      <div class="calendar-header">
+        <button class="nav-button" (click)="changeMonth(-1)" aria-label="上一個月">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="month-year-display">
+          <div class="month-name">{{ currentMonthName }}</div>
+          <div class="year-name">{{ currentYear }}</div>
+        </div>
+
+        <button class="nav-button" (click)="changeMonth(1)" aria-label="下一個月">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- (隱藏) 時間輸入，保留在 DOM -->
+      <div class="time-inputs" aria-hidden="true" style="display: none;">
+        <div class="input-group">
+          <label>開始時間</label>
+          <input type="text" [value]="formatDateFull(selectedRange.start)" readonly placeholder="選擇開始日期" />
+        </div>
+        <div class="input-group">
+          <label>結束時間</label>
+          <input type="text" [value]="formatDateFull(selectedRange.end)" readonly placeholder="選擇結束日期" />
+        </div>
+      </div>
+
+      <!-- calendar table -->
+      <table class="calendar-table" role="grid" aria-label="月份日曆">
+        <thead>
+          <tr role="row">
+            <th *ngFor="let d of weekDays" class="weekday-header" role="columnheader">{{ d }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let week of weeks; let wi = index" role="row">
+            <td
+              *ngFor="let dateObj of week; let di = index"
+              role="gridcell"
+              class="calendar-day"
+              [ngClass]="getDateClasses(dateObj)"
+              [class.current-month]="dateObj.type === 'current-month'"
+              [class.outside-month]="dateObj.type !== 'current-month'"
+              [class.clickable]="dateObj.type === 'current-month'"
+              (click)="handleDateClick(dateObj)"
+              [attr.aria-selected]="selected && isSameDay(selected, dateObj.date) ? 'true' : 'false'"
+              tabindex="0"
+            >
+              <div class="day-number">{{ dateObj.day }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #235347; /* 深藍字體 */
+  margin: 0;
+  padding: 20px 0;
+  font-weight: 600;
+}
+
+.update-title {
+  position: relative;
+}
+
+.update-shift-name {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  bottom: 4px;
+  // text-align: center;
+  color: #d7ab58;
+  font-weight: 500;
+  img {
+    margin-right: 6px;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+.work-item {
+  padding: 0px 20px 16px;
+  // margin-bottom: 16px;
+  border: 1px solid #d0d7e2;
+  border-radius: 12px;
+  background: #f9fbff; /* 淡藍底 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .work-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-bottom: 8px;
+    padding: 14px 0;
+    border-bottom: 1px solid #ddd;
+    .work-row-group {
+      & > .work-row:first-of-type {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .work-row {
+    display: flex;
+    align-items: center;
+    // margin-bottom: 10px;
+    gap: 10px;
+
+    .label-title {
+      width: 90px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .label-value {
+      flex: 1;
+      color: #475569;
+    }
+
+    input,
+    select {
+      flex: 1;
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background-color: #fff;
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #3b82f6; /* 藍色邊框 */
+      box-shadow: 0 0 4px rgba(59, 130, 246, 0.4);
+      outline: none;
+    }
+  }
+
+  .active-wrapper {
+    background: #daf1de;
+    border: 2px dotted #aaa;
+    padding: 8px;
+  }
+  .work-row-active {
+    // padding-top: 20px;
+  }
+
+  .work-actions {
+    // display: flex;
+    // gap: 10px;
+    // margin-top: 12px;
+    // justify-content: flex-end;
+
+    button {
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-edit {
+      background-color: #48907e; /* 綠色 */
+      color: white;
+    }
+    .btn-edit:hover {
+      background-color: #8eb69b;
+    }
+
+    .btn-save {
+      background-color: #608cd2; /* 藍色 */
+      color: white;
+      margin-right: 8px;
+    }
+    .btn-save:hover {
+      background-color: #517bbe;
+    }
+
+    .btn-delete {
+      background-color: #e8928a; /* 橙色 */
+      color: white;
+      margin-left: 8px;
+    }
+    .btn-delete:hover {
+      background-color: #d47a71;
+    }
+
+    .btn-cancel {
+      background-color: #e8928a; /* 灰白 */
+      color: #fff;
+    }
+    .btn-cancel:hover {
+      background-color: #d47a71;
+    }
+  }
+
+  & > .work-group:last-of-type {
+    border: 0;
+  }
+}
+
+
+.update-wrapper {
+  // padding: 0 8px;
+  .work-item {
+    max-height: 430px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #5d9c88 #f1f5f9;
+  }
+}

@@ -1,0 +1,108 @@
+.notice-board {
+  position: relative;
+  max-width: 800px;
+
+  padding: 24px;
+  background-color: transparent;
+  border-radius: 12px;
+  box-shadow: none;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dialog-header { position: absolute; top: 16px; right: 16px; }
+
+.dialog-header button {
+  border: none; outline: none; box-shadow: none; background: transparent; cursor: pointer; padding: 0;
+}
+.dialog-header .mat-icon { font-size: 48px; width: 50px; height: 50px; color: #555; }
+.dialog-header .mat-icon:hover { color: #d32f2f; }
+.plain-close { background: transparent; border: none; outline: none; padding: 0; cursor: pointer; }
+.plain-close mat-icon { font-size: 48px; width: 50px; height: 50px; color: #555; }
+.plain-close:hover mat-icon { color: #d32f2f; }
+
+/* 標題區 */
+.notice-header-bar {
+  display: flex; flex-direction: column; align-items: center; margin-bottom: 12px; padding-bottom: 12px;
+}
+.notice-title { font-size: 28px; font-weight: bold; color: #3f51b5; margin: 0; }
+
+
+.notice-title {
+  display: flex;
+  align-items: center;
+  gap: 3px; // 圖示和文字之間的距離
+}
+
+.notice-title .notice-icon {
+  width: 35px;   // 你可以自己調大小
+  height: 35px;
+  object-fit: contain;
+}
+
+/* 分頁膠囊按鈕（新增） */
+.tabs { display: flex; gap: 12px; justify-content: center; margin: 6px 0 10px; }
+.tab-btn {
+  padding: 8px 16px;
+  background: #ebeaf5;
+  color: #5d5a7f;
+  border-radius: 12px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all .15s ease;
+}
+.tab-btn.active { background: #3f51b5; color: #fff; }
+.tab-btn:hover { transform: translateY(-1px); }
+
+.extra-line { border: none; height: 2px; background-color: #999; width: 470px; margin: 0 auto; }
+
+/* 內容捲動（新增） */
+.scroll-area { max-height: 60vh; overflow-y: auto; padding-right: 6px; }
+
+/* 空狀態 */
+.empty-hint { text-align: center; color: #8a8898; padding: 16px 8px; }
+
+/* 卡片（沿用你的藍色並補上 personal 綠色） */
+.notice-item {
+  border-left: 5px solid #3f51b5;
+  background-color: #e8edff;
+  padding: 16px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.notice-item:hover { background-color: #3de2e840; }
+.notice-item.read { background-color: #f0f0f0; border-left-color: #9e9e9e; color: #777; }
+.notice-item.read:hover { background-color: #e0e0e0; }
+
+
+.notice-item.personal.read {           /* ← 保險起見再覆蓋一次 */
+  background-color: #f0f0f0 !important;
+  border-left-color: #9e9e9e !important;
+  color: #777 !important;
+}
+/* 個人通知配色（新增） */
+.notice-item.personal { background: #e8f5e9; border-left-color: #2ecc71; }
+.kv { display: flex; gap: 6px; padding: 3px 0; }
+.k { color: #355; font-weight: 700; min-width: 88px; }
+.v a { color: #2c7; text-decoration: underline; }
+
+
+.badge{
+  display:inline-block;
+  min-width: 20px;
+  line-height: 20px;
+  padding: 0 6px;
+  margin-left: 6px;
+  border-radius: 999px;
+  background:#d32f2f;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  text-align:center;
+}
+/* 列頭 */
+.notice-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.notice-date { font-size: 14px; color: #666; }
+.notice-content { font-size: 16px; color: #333; line-height: 1.6; margin: 0; }

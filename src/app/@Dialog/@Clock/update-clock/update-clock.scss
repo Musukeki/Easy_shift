@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+.clock-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 15px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.clock-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.clock-card .date {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.clock-card .clock-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.clock-card .double {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.clock-card .double.yes {
+  color: #27ae60; /* 綠色 */
+}
+
+.clock-card .double.no {
+  color: #e74c3c; /* 紅色 */
+}
+
+.clock-card .score,
+.clock-card .hours {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  color: #2c3e50;
+}

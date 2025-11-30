@@ -1,0 +1,29 @@
+<div style="background-color: #fff;">
+<h2 mat-dialog-title class="title">確認操作</h2>
+
+<mat-dialog-content class="dialog-content">
+  <!-- 動態貼圖／影片（置中） -->
+  <div class="emoji-wrap">
+    <video
+      class="dialog-video"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+    >
+      <source src="true.mp4" type="video/mp4" />
+      您的瀏覽器不支援影片播放
+    </video>
+  </div>
+
+  <p class="message">
+    請確認你是否要繼續執行此操作？此動作可能無法復原。
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="button-group">
+  <button mat-raised-button class="btn btn-secondary" (click)="onCancel()">我再想想</button>
+  <button mat-raised-button class="btn btn-primary" (click)="onConfirm()">確認送出</button>
+</mat-dialog-actions>
+</div>

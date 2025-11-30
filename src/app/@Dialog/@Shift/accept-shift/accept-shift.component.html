@@ -1,0 +1,30 @@
+<div class="toolbar">
+  <div class="toolbar-left">
+    <!-- 可預留空間放其他功能 -->
+  </div>
+
+  <div class="toolbar-center">
+    <mat-icon class="nav-icon" (click)="previousMonth()">chevron_left</mat-icon>
+    <span class="month-label">{{ currentMonthLabel }}</span>
+    <mat-icon class="nav-icon" (click)="nextMonth()">chevron_right</mat-icon>
+  </div>
+
+  <div class="toolbar-right">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-bg-secondary"
+      (click)="goBack()"
+    >
+      返回
+    </button>
+    <button class="btn-bg-secondary" mat-button (click)="acceptAllPending()">一鍵同意</button>
+
+  </div>
+</div>
+<div class="daypilot-scheduler-wrapper">
+  <daypilot-scheduler
+    [config]="config"
+    [events]="events">
+  </daypilot-scheduler>
+</div>

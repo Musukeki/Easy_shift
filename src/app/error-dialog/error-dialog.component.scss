@@ -1,0 +1,21 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .error-video {
+    width: 125px;
+    height: 125px;
+  }
+  
+  .error-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #e53935; /* 紅色 */
+  }
+  

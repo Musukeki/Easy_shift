@@ -1,0 +1,94 @@
+<div class="all-flex">
+
+  <div class="dialog-header">
+    <button mat-icon-button (click)="closeAndRefresh()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  <h1 class="main-title">預排班系統</h1>
+
+  <div class="container">
+    <div class="calendar-wrapper">
+      <div class="shell">
+        <header>
+          <!-- 左箭頭（上一月） -->
+          <button mat-icon-button class="only-nav only-nav-left" (click)="prevMonth()" aria-label="上一月">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <div class="day">{{ currentMonth }}</div>
+          <div class="month">{{ monthName }}</div>
+          <!-- 右箭頭（下一月） -->
+          <button mat-icon-button class="only-nav only-nav-right" (click)="nextMonth()" aria-label="下一月">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </header>
+
+        <table class="calender">
+          <thead>
+            <tr>
+              <td>Mon</td>
+              <td>Tue</td>
+              <td>Wed</td>
+              <td>Thu</td>
+              <td>Fri</td>
+              <td>Sat</td>
+              <td>Sun</td>
+            </tr>
+          </thead>
+          <tbody>
+            @for (week of getWeeks(); track $index) {
+            <tr>
+              @for (cell of week; track $index) {
+              <td>
+                @if (cell) {
+                <div [class.clickable-date]="cell.disabled === false" [class.disabled-date]="cell.disabled"
+                  [class.selected-date]="cell.disabled === false && selectedDates.has(cell.key)"
+                  (click)="onCellClick(cell)">
+                  {{ cell.key.split('-')[2] }}
+                </div>
+                } @else {
+                <div class="empty-date"></div>
+                }
+              </td>
+              }
+            </tr>
+            }
+          </tbody>
+        </table>
+        <div class="ring-left"></div>
+        <div class="ring-right"></div>
+      </div>
+    </div>
+    <div class="selected-dates-panel">
+      <h2 class="panel-title">已選擇的日期</h2>
+      <div class="selected-count">已選擇 {{ selectedDates.size }} 天</div>
+
+      @if (selectedDates.size === 0) {
+      <div class="no-selection">
+        尚未選擇任何排班日期<br /><br />
+        請點選左側日曆的日期進行選擇
+      </div>
+      }
+
+      @if (selectedDates.size > 0) {
+      <div class="selected-list">
+        @for (dateKey of getSortedDates(); track dateKey) {
+        <div class="selected-item" (click)="toggleDate(dateKey)">
+          <div class="date">{{ formatDate(dateKey) }}</div>
+          <div class="weekday">{{ getWeekday(dateKey) }}</div>
+          <div class="shift">
+            {{ selectedDates.get(dateKey)?.displayText || '未選擇班別' }}
+          </div>
+        </div>
+        }
+      </div>
+      }
+
+      <div class="button-group">
+        <button class="btn btn-clear" (click)="clearAllDates()">清除所有選擇</button>
+        <button class="btn btn-submit" (click)="submitSchedule()">送出</button>
+      </div>
+    </div>
+  </div>
+</div>
